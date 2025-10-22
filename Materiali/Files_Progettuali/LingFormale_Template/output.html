@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Linguaggio Template</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+  li {
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
+  strong {
+      font-size: 18pt;
+  }
+  body {
+      font-size: 13pt;
+  }
+  table, th, td {
+      border: 1px solid black;
+  }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Linguaggio Template</h1>
+</header>
+<h2 id="lexer">Lexer</h2>
+<h3 id="espressioni-regolari">Espressioni regolari</h3>
+<ul>
+<li>Token CHIAVE_SEGNAPOSTO <span class="math inline">→</span>
+\\@[A-Za-z0-9.-_]</li>
+<li>Token CHIAVE_PULSANTE_OPEN <span class="math inline">→</span>
+\\@[A-Za-z0-9.-_]{</li>
+<li>Token CHIAVE_PULSANTE_CLOSE <span class="math inline">→</span>
+\\@}</li>
+<li>Token CONTENUTO: Tutte le altre stringhe</li>
+</ul>
+<p><img src="immagini/nfa.png" /></p>
+<ul>
+<li>Lo stato 4 riconosce il token CONTENUTO</li>
+<li>Lo stato 7 riconosce il token CHIAVE_SEGNAPOSTO</li>
+<li>Lo stato 8 riconosce il token CHIAVE_PULSANTE_OPEN</li>
+<li>Lo stato 9 riconosce il token CHIAVE_PULSANTE_CLOSE</li>
+</ul>
+<h3 id="transizioni-per-la-trasformazione-dellnfa-a-dfa">Transizioni per
+la trasformazione dell’NFA a DFA</h3>
+<ul>
+<li><span class="math inline"><em>ϵ</em>(0) = {1,2}</span></li>
+<li><span class="math inline"><em>δ</em>({1,2},’\’) = {3,5}</span></li>
+<li><span class="math inline"><em>δ</em>({1,2},’@’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({1,2},’{’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({1,2},’}’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({1,2},’C’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({1,2},’Q’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({3,5},’\’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({3,5},’@’) = {6}</span></li>
+<li><span class="math inline"><em>δ</em>({4},’\’) = {5}</span></li>
+<li><span class="math inline"><em>δ</em>({4},’@’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({4},’{’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({4},’}’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({4},’C’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({4},’Q’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({6},’}’) = {9}</span></li>
+<li><span class="math inline"><em>δ</em>({6},’C’) = {7}</span></li>
+<li><span class="math inline"><em>δ</em>({5},’\’) = {4}</span></li>
+<li><span class="math inline"><em>δ</em>({7},’{’) = {8}</span></li>
+<li><span class="math inline"><em>δ</em>({7},’C’) = {7}</span></li>
+</ul>
+<h4 id="forma-tabellare">Forma tabellare</h4>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">S</th>
+<th style="text-align: center;">\</th>
+<th style="text-align: center;">@</th>
+<th style="text-align: center;">{</th>
+<th style="text-align: center;">}</th>
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">Q</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">{1,2}</span></td>
+<td style="text-align: center;"><span
+class="math inline">{3,5}</span></td>
+<td style="text-align: center;">{4}</td>
+<td style="text-align: center;">{4}</td>
+<td style="text-align: center;">{4}</td>
+<td style="text-align: center;">{4}</td>
+<td style="text-align: center;">{4}</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span
+class="math inline">{3,5}</span></td>
+<td style="text-align: center;">{4}</td>
+<td style="text-align: center;">{6}</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">{4}</span></td>
+<td style="text-align: center;">{5}</td>
+<td style="text-align: center;">{4}</td>
+<td style="text-align: center;">{4}</td>
+<td style="text-align: center;">{4}</td>
+<td style="text-align: center;">{4}</td>
+<td style="text-align: center;">{4}</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span
+class="math inline">{5}</span></td>
+<td style="text-align: center;">{4}</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">{6}</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">{9}</td>
+<td style="text-align: center;">{7}</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span
+class="math inline">{7}</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">{8}</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">{7}</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span
+class="math inline">{8}</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span
+class="math inline">{9}</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><img src="immagini/nfa_dfa.png" /></p>
+<p><img src="immagini/dfa_rinumerazione.png" /></p>
+<h3 id="dfa-aumentato">DFA Aumentato</h3>
+<p><img src="immagini/dfa_aumentato.png" /></p>
+<ul>
+<li>Lo stato 15 restituisce il token $ (end of input)</li>
+<li>Lo stato 9 ripone l’ultimo carattere analizzato nell’input e
+restituisce il token CONTENUTO</li>
+<li>Lo stato 14 restituisce il token CONTENUTO</li>
+<li>Lo stato 13 restituisce un token SCONOSCIUTO, cioè un token non
+valido (gestione dell’errore)</li>
+<li>Lo stato 11 restituisce il token CHIAVE_SEGNAPOSTO</li>
+<li>Lo stato 12 restituisce il token CHIAVE_PULSANTE_OPEN</li>
+<li>Lo stato 10 restituisce il token CHIAVE_PULSANTE_CLOSE</li>
+</ul>
+<h2 id="parser">Parser</h2>
+<h3 id="grammatica-ll1">Grammatica LL1</h3>
+<ol start="0" type="1">
+<li>T <span class="math inline">→</span> &lt;CONTENUTO&gt;
+&lt;T&gt;</li>
+<li>T <span class="math inline">→</span> &lt;CHIAVE_SEGNAPOSTO&gt;
+&lt;T&gt;</li>
+<li>T <span class="math inline">→</span> &lt;CHIAVE_PULSANTE_OPEN&gt;
+&lt;T&gt; &lt;CHIAVE_PULSANTE_CLOSE&gt; &lt;T&gt;</li>
+<li>T <span class="math inline"> → <em>ϵ</em></span></li>
+</ol>
+<h3 id="tabella-nullable-first-e-follow">Tabella Nullable, First e
+Follow</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">NT</th>
+<th style="text-align: center;">Nullable</th>
+<th style="text-align: center;">First</th>
+<th style="text-align: center;">Follow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T</td>
+<td style="text-align: center;">true</td>
+<td style="text-align: center;">&lt;CONTENUTO&gt;,
+&lt;CHIAVE_SEGNAPOSTO&gt;, &lt;CHIAVE_PULSANTE_OPEN&gt;</td>
+<td style="text-align: center;">&lt;CHIAVE_PULSANTE_CLOSE&gt;, $</td>
+</tr>
+</tbody>
+</table>
+<h3 id="predictive-parse-table">Predictive parse table</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">NT</th>
+<th style="text-align: center;">&lt;CONTENUTO&gt;</th>
+<th style="text-align: center;">&lt;CHIAVE_SEGNAPOSTO&gt;</th>
+<th style="text-align: center;">&lt;CHIAVE_PULSANTE_OPEN&gt;</th>
+<th style="text-align: center;">&lt;CHIAVE_PULSANTE_CLOSE&gt;</th>
+<th style="text-align: center;">&lt;SCONOSCIUTO&gt;</th>
+<th style="text-align: center;">$</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>T</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">ERRORE</td>
+<td style="text-align: center;">3</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

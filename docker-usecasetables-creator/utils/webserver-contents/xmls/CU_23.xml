@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[23]]></id>
+<name><![CDATA[VisualizzaItinerario]]></name>
+<description><![CDATA[L'utente visualizza i dettagli associati ad un itinerario.]]></description>
+<primary-actors><![CDATA[Utente]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente chiede al sistema di visualizzare un itinerario in particolare.
+<u>2</u> Il sistema mostra i dettagli dell'itinerario scelto dall'utente.]]></sequence>
+<postconditions><![CDATA[L'utente visualizza i dettagli dell'itinerario scelto.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

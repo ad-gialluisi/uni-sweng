@@ -1,0 +1,55 @@
+@startuml
+
+!include skin.h
+
+actor Fruitore
+boundary vistaFeedback
+control controlloreFeedback
+control modelloFeedback
+participant ciceroneDatabase
+
+note over Fruitore : ovvero uno tra,\nGlobetrotter, QuasiCicerone,\nCicerone
+
+Fruitore -> vistaFeedback : elabora(dati)
+
+activate vistaFeedback
+vistaFeedback -> controlloreFeedback : richiediRilascioFeedPO(dati)
+
+note right of vistaFeedback : nomi dei metodi ridotti per\nquestioni di lettura
+
+activate controlloreFeedback
+controlloreFeedback -> controlloreFeedback : validaParametri(dati)
+activate controlloreFeedback
+
+alt I dati sono validi
+    controlloreFeedback -> modelloFeedback : rilasciaFeedPO(idItin, idPartec, datiFeed)
+    activate modelloFeedback
+
+    modelloFeedback -> ciceroneDatabase : query(datiRichPartec)
+    activate ciceroneDatabase
+    modelloFeedback <<-- ciceroneDatabase : datiRichPartec
+    deactivate ciceroneDatabase
+
+    opt Il fruitore risulta essere\nEFFETTIVAMENTE un partecipante\nall'itinerario
+        note right of modelloFeedback : cioè, deve esserci una\nrichiesta di partecipazione\ncon stato "accordata"
+        modelloFeedback -> ciceroneDatabase : manipola(addFeed)
+    end
+
+    controlloreFeedback <<-- modelloFeedback : codiceStato
+    deactivate modelloFeedback
+else
+    controlloreFeedback -> controlloreFeedback : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreFeedback
+
+controlloreFeedback -> controlloreFeedback : setStatoOperazione(codiceStato)
+controlloreFeedback -> controlloreFeedback : setMessaggio(codiceStato)
+
+vistaFeedback -> controlloreFeedback : getStatoOperazione()
+vistaFeedback <<-- controlloreFeedback : statoOperazione
+deactivate controlloreFeedback
+
+vistaFeedback -> vistaFeedback : salvaMessPerScherm(pagItin)
+vistaFeedback -> vistaFeedback : mandaA(pagItin)
+
+@enduml

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[18]]></id>
+<name><![CDATA[VisualizzaRichiestePartecipazioneItinerario]]></name>
+<description><![CDATA[L'utente visualizza le richieste di partecipazione accordate di un itinerario.]]></description>
+<primary-actors><![CDATA[Utente]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente chiede al sistema di visualizzare le richieste di partecipazione dell'itinerario.
+<u>2</u> Il sistema mostra le richieste di partecipazione che sono nello stato <i>accordata</i>.]]></sequence>
+<postconditions><![CDATA[L'utente visualizza le richieste di partecipazione accordate.]]></postconditions>
+<alternative-sequences><![CDATA[<u><i>ALT_18.1</u></i>]]></alternative-sequences>
+</CU>

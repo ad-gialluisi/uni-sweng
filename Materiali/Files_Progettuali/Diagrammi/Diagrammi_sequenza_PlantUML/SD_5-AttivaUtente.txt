@@ -1,0 +1,49 @@
+@startuml
+
+!include skin.h
+
+actor Ospite
+boundary vistaAccesso
+control controlloreAccesso
+control modelloProfilo
+participant ciceroneDatabase
+
+Ospite -> vistaAccesso : elabora(dati)
+activate vistaAccesso
+vistaAccesso -> controlloreAccesso : richiediAttivazioneUtente(dati)
+activate controlloreAccesso
+controlloreAccesso -> controlloreAccesso : validaParametri(dati)
+
+
+alt I dati sono validi
+    controlloreAccesso -> modelloProfilo : attivaUtente(idUtente, codiceAttivazione, password)
+    activate modelloProfilo
+
+    modelloProfilo -> ciceroneDatabase : query(datiUtente)
+    modelloProfilo <<-- ciceroneDatabase : utente
+
+    alt L'utente è nello stato "inserito"
+        modelloProfilo -> ciceroneDatabase : manipola(rimuoviCodiceAttivazione)
+        note right of modelloProfilo : Lo stato dell'utente\nverrà impostato ad "attivato"
+        activate ciceroneDatabase
+    else L'utente è nello stato "recuperando"\nE\nla password corrisponde
+        modelloProfilo -> ciceroneDatabase : manipola(rimuoviCodiceAttivazione)
+        deactivate ciceroneDatabase
+    end
+    controlloreAccesso <<-- modelloProfilo : codiceStato
+    controlloreAccesso -> controlloreAccesso : set(codiceStato, OPERAZIONE_RIUSCITA)
+else else
+    controlloreAccesso -> controlloreAccesso : set(codiceStato, NO_SEGNALAZIONE)
+end
+
+controlloreAccesso -> controlloreAccesso : setStatoOperazione(codiceStato)
+controlloreAccesso -> controlloreAccesso : setMessaggio(codiceStato)
+
+vistaAccesso -> controlloreAccesso : getStatoOperazione()
+vistaAccesso <<-- controlloreAccesso : statoOperazione
+deactivate controlloreAccesso
+
+vistaAccesso -> vistaAccesso : salvaMessaggioPerSchermata(paginaAccesso)
+vistaAccesso -> vistaAccesso : mandaA(paginaAccesso)
+
+@enduml

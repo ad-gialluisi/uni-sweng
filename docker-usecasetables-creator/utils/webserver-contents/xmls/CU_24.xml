@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[24]]></id>
+<name><![CDATA[VisualizzaItinerariFruitore]]></name>
+<description><![CDATA[Visualizza la lista di itinerari a cui un fruitore ha partecipato.]]></description>
+<primary-actors><![CDATA[Utente]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente chiede al sistema di visualizzare la lista degli itinerari a cui un particolare fruitore ha partecipato.
+<u>2</u> Il sistema mostra tale lista di itinerari.]]></sequence>
+<postconditions><![CDATA[L'utente visualizza la lista di itinerari a cui il particolare fruitore ha partecipato.]]></postconditions>
+<alternative-sequences><![CDATA[<u><i>ALT_24.1</u></i>]]></alternative-sequences>
+</CU>

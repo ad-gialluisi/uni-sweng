@@ -1,0 +1,34 @@
+@startuml
+
+!include skin.h
+
+actor Utente
+boundary vistaItinerario
+control controlloreItinerario
+control modelloItinerario
+
+Utente -> vistaItinerario : elabora(dati)
+activate vistaItinerario
+vistaItinerario -> controlloreItinerario : richiediRicercaItinerari(dati)
+activate controlloreItinerario
+controlloreItinerario -> controlloreItinerario : validaParametri(dati)
+activate controlloreItinerario
+
+alt I dati sono validi
+    controlloreItinerario -> modelloItinerario : ricercaItinerari(datiDiRicerca)
+    activate modelloItinerario
+    
+    controlloreItinerario <<-- modelloItinerario : codiceStato, itinerari
+    deactivate modelloItinerario
+else
+    controlloreItinerario -> controlloreItinerario : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreItinerario
+
+controlloreItinerario -> controlloreItinerario : setStatoOperazione(codiceStato)
+controlloreItinerario -> controlloreItinerario : setMessaggio(codiceStato)
+vistaItinerario <<-- controlloreItinerario : itinerari
+
+vistaItinerario -> vistaItinerario : mostraItinerari(itinerari)
+
+@enduml

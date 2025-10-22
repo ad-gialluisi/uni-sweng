@@ -1,0 +1,45 @@
+@startuml
+
+!include skin.h
+
+actor Utente
+boundary vistaFeedback
+control controlloreFeedback
+control modelloFeedback
+participant ciceroneDatabase
+
+Utente -> vistaFeedback : disegna()
+activate vistaFeedback
+
+vistaFeedback -> vistaFeedback : schermataVisualizzazioneFeedbacksFruitore()
+activate vistaFeedback
+
+vistaFeedback -> controlloreFeedback : richiediFeedbacksFruitore(idFruitore)
+note right of vistaFeedback : idFruitore lo si ottiene\ncome parametro GET
+
+activate controlloreFeedback
+controlloreFeedback -> modelloFeedback : getFeedbacksFruitore(idFruitore)
+
+
+activate modelloFeedback
+modelloFeedback -> ciceroneDatabase : query(datiFruitore)
+
+activate ciceroneDatabase
+modelloFeedback <<-- ciceroneDatabase : datiFruitore
+    
+alt Il fruitore è un Cicerone
+    modelloFeedback -> ciceroneDatabase : query(tuttiFeedbacksFruitore)
+else else
+    modelloFeedback -> ciceroneDatabase : query(soloFeedbacksOrganizzatorePartecipante)
+end
+    
+modelloFeedback <<-- ciceroneDatabase : feedbacks
+deactivate ciceroneDatabase
+controlloreFeedback <<-- modelloFeedback : feedbacks
+deactivate modelloFeedback
+vistaFeedback <<-- controlloreFeedback : feedbacks
+deactivate controlloreFeedback
+
+vistaFeedback -> vistaFeedback : mostraFeedbacks(feedbacks)
+
+@enduml

@@ -1,0 +1,85 @@
+<!-- This file is part of "Piattaforma Cicerone" -->
+
+<!-- This program is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- This program is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with this program. If not, see <https://www.gnu.org/licenses/>. -->
+
+
+\@schermata-accesso{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+	<div id="accesso">
+    	<h3>Effettua Accesso</h3>
+    	<form action="\@form-req-accesso" method="post">
+    		<label>Nome utente</label><br>
+    		<input type="text" name="\@campo-nomeutente" value=""><br>
+    		<label>Password</label><br>
+    		<input type="password" name="\@campo-password" value=""><br>
+    		<input class="generic-button" type="submit" value="Accedi"/>
+    	</form>
+
+	    <p><a href="javascript:;" onclick="mostra('recupero')">Nome utente o password dimenticati?</a></p>
+    	<p><a href="javascript:;" onclick="mostra('registrazione')">Nuovo utente?</a></p>
+	</div>
+
+
+	<div id="registrazione" class="hidden">
+    	<h3>Registrazione nuovo utente</h3>
+    	<form action="\@form-req-registrazione" method="post">
+        	<label>Email</label><br>
+        	<input type="email" name="\@campo-email" value=""><br/>
+       		<label>Nome utente</label><br>
+       		<input type="text" name="\@campo-nomeutente" value=""><br/>
+        	<label>Password</label><br>
+        	<input type="password" name="\@campo-password" value=""><br/>
+        	<label>Conferma password</label><br>
+        	<input type="password" name="\@campo-conferma-password" value=""><br>
+        	<input class="generic-button" type="submit" value="Registrati"/>
+    	</form>
+
+		<p><a href="javascript:;" onclick="mostra('accesso')">Hai già un profilo?</a></p>
+    	<p><a href="javascript:;" onclick="mostra('recupero')">Nome utente o password dimenticati?</a></p>
+	</div>
+
+
+	<div id="recupero" class="hidden">
+    	<h3>Recupero Accesso</h3>
+    	<form action="\@form-req-recupero" method="post">
+        	<label>Email</label><br>
+        	<input type="email" name="\@campo-email" value=""><br>
+        	<input class="generic-button" type="submit" value="Recupera"/>
+	    </form>
+
+		<p><a href="javascript:;" onclick="mostra('accesso')">Ricordi nome utente e password?</a></p>
+    	<p><a href="javascript:;" onclick="mostra('registrazione')">Nuovo utente?</a></p>
+	</div>
+</div>
+\@}
+
+
+\@schermata-reimpostazione{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen" id="reimpostazione">
+    <h3>Reimpostazione password</h3>
+   	<form action="\@form-req-reimposta" method="post">
+   		<label>Password</label><br>
+        <input type="password" name="\@campo-password" value=""><br/>
+        <label>Conferma password</label><br>
+        <input type="password" name="\@campo-conferma-password" value=""><br>
+        <input type="hidden" name="\@campo-codice-attivazione" value="\@codice-attivazione">
+        <input type="hidden" name="\@campo-id" value="\@id">
+        <input class="generic-button" type="submit" value="Reimposta"/>
+	</form>
+</div>
+\@}

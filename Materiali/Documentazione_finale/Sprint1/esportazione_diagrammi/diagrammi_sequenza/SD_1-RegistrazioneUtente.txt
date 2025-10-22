@@ -1,0 +1,54 @@
+@startuml
+
+!include skin.h
+
+actor Ospite
+boundary vistaAccesso
+control controlloreAccesso
+control modelloUtente
+participant ciceroneDatabase
+
+Ospite -> vistaAccesso : elabora(dati)
+activate vistaAccesso
+vistaAccesso -> controlloreAccesso : richiediRegistrazione(dati)
+activate controlloreAccesso
+controlloreAccesso -> controlloreAccesso : validaParametri(dati)
+activate controlloreAccesso
+
+alt I dati sono validi
+    controlloreAccesso -> modelloUtente : registraUtente(nomeutente, password, email)
+    activate modelloUtente
+
+    modelloUtente -> ciceroneDatabase : query(datiUtenti)
+    activate ciceroneDatabase
+    modelloUtente <<-- ciceroneDatabase : datiUtenti
+    deactivate ciceroneDatabase
+
+    opt Il nome utente e l'email sono già utilizzati
+        modelloUtente -> ciceroneDatabase : manipola(aggiungiUtente)
+        note right of modelloUtente : lo stato dell'utente è\nimpostato a "registrato"
+    end
+    
+    controlloreAccesso <<-- modelloUtente : codiceStato, codiceAttivazione
+    deactivate modelloUtente
+    alt La registrazione è andata a buon fine
+        controlloreAccesso -> controlloreAccesso : inviaCodiceAttivazione(codiceAttivazione)
+    else
+        controlloreAccesso -> controlloreAccesso : set(codiceStato, OPERAZIONE_FALLITA)
+    end
+else
+    controlloreAccesso -> controlloreAccesso : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreAccesso
+
+controlloreAccesso -> controlloreAccesso : setStatoOperazione(codiceStato)
+controlloreAccesso -> controlloreAccesso : setMessaggio(codiceStato)
+
+vistaAccesso -> controlloreAccesso : getStatoOperazione()
+vistaAccesso <<-- controlloreAccesso : statoOperazione
+deactivate controlloreAccesso
+
+vistaAccesso -> vistaAccesso : salvaMessaggioPerSchermata(paginaAccesso)
+vistaAccesso -> vistaAccesso : mandaA(paginaAccesso)
+
+@enduml

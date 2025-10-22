@@ -1,0 +1,15 @@
+.hidden {
+    display: none;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+li, label, select, button, input[type=text] {
+    font-size: 15pt;
+}
+
+body {
+    font-size: 11pt;
+}

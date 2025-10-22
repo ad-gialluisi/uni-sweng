@@ -1,0 +1,8 @@
+cleanup() {
+    exit 0
+}
+
+# Capture signals, so that once completed, everything is stopped
+trap cleanup SIGTERM SIGINT
+
+cd /var/www/html/cmdline-scripts

@@ -1,0 +1,38 @@
+@startuml
+
+!include skin.h
+
+actor UtenteRegistrato
+boundary vistaNotifica
+control controlloreNotifica
+control modelloNotifica
+
+UtenteRegistrato -> vistaNotifica : elabora(dati)
+activate vistaNotifica
+vistaNotifica -> controlloreNotifica : richiediModificaPreferenzeNotifica(dati)
+activate controlloreNotifica
+controlloreNotifica -> controlloreNotifica : validaParametri(dati)
+activate controlloreNotifica
+
+alt I dati sono validi
+    controlloreNotifica -> modelloNotifica : modificaPreferenzeNotifica(idUtente, datiPreferenze)
+    activate modelloNotifica
+    
+    controlloreNotifica <<-- modelloNotifica : codiceStato
+    deactivate modelloNotifica
+else
+    controlloreNotifica -> controlloreNotifica : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreNotifica
+
+controlloreNotifica -> controlloreNotifica : setStatoOperazione(codiceStato)
+controlloreNotifica -> controlloreNotifica : setMessaggio(codiceStato)
+
+vistaNotifica -> controlloreNotifica : getStatoOperazione()
+vistaNotifica <<-- controlloreNotifica : statoOperazione
+deactivate controlloreNotifica
+
+vistaNotifica -> vistaNotifica : salvaMessaggioPerSchermata(paginaProfilo)
+vistaNotifica -> vistaNotifica : mandaA(paginaProfilo)
+
+@enduml

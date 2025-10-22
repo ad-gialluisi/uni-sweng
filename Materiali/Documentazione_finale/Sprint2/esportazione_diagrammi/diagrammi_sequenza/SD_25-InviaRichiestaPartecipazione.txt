@@ -1,0 +1,49 @@
+@startuml
+
+!include skin.h
+
+actor Fruitore
+boundary vistaItinerario
+control controlloreItinerario
+control modelloItinerario
+participant ciceroneDatabase
+
+note over Fruitore : ovvero uno tra,\nGlobetrotter, QuasiCicerone,\nCicerone
+
+Fruitore -> vistaItinerario : elabora(dati)
+activate vistaItinerario
+vistaItinerario -> controlloreItinerario : richiediInvioRichiestaPartecipazione(dati)
+activate controlloreItinerario
+controlloreItinerario -> controlloreItinerario : validaParametri(dati)
+activate controlloreItinerario
+
+alt I dati sono validi
+    controlloreItinerario -> modelloItinerario : inviaRichiestaPartecipazione(idItinerario, idFruitore)
+    note right of controlloreItinerario : idFruitore è l'id dell'attore\ndi questa sequenza
+
+    activate modelloItinerario
+
+    modelloItinerario -> ciceroneDatabase : manipola(aggiuntaRichiestaPartecipazione)
+    activate ciceroneDatabase
+    note right of modelloItinerario : la richiesta avrà stato "accordanda"
+    deactivate ciceroneDatabase
+    
+    controlloreItinerario <<-- modelloItinerario : codiceStato
+    deactivate modelloItinerario
+else
+    controlloreItinerario -> controlloreItinerario : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreItinerario
+
+controlloreItinerario -> controlloreItinerario : setStatoOperazione(codiceStato)
+controlloreItinerario -> controlloreItinerario : setMessaggio(codiceStato)
+
+vistaItinerario -> controlloreItinerario : getStatoOperazione()
+vistaItinerario <<-- controlloreItinerario : statoOperazione
+deactivate controlloreItinerario
+
+opt L'operazione è andata a buon fine
+    vistaItinerario -> vistaItinerario : aggiornaVisualizzazionePartecipazioni()
+end
+
+@enduml

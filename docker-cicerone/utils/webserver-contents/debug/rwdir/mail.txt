@@ -1,0 +1,6 @@
+Mittente: webmaster@cicero.com
+Destinatario: aa@aa
+Oggetto: Richiesta attivazione del profilo Globetrotter
+Corpo:
+<p>È stato inviato il codice d'attivazione per il nuovo utente "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".<br>
+Utilizzare <a href="http://cicero.com:80/accesso.php?richiesta=attivazione&id=5&codice=dZbn3QHjCpBy" _target="_blank">questo link</a> per effettuare l'attivazione.</p>

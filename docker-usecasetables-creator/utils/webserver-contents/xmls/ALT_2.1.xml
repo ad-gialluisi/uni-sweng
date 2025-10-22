@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ALT>
+<id><![CDATA[2.1]]></id>
+<name><![CDATA[EffettuaAccesso:AccessoNegato]]></name>
+<description><![CDATA[Il sistema nega l'accesso all'ospite.]]></description>
+<primary-actors><![CDATA[Ospite]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'ospite ha inserito delle credenziali non corrette (il nome utente non è stato trovato oppure la password non corrisponde).]]></preconditions>
+<execution-step><![CDATA[Dopo il passo <u>3</u> di <i><u>CU_2</u></i>]]></execution-step>
+<sequence><![CDATA[<u>1</u> Il sistema avvisa l'ospite del problema con un messaggio.]]></sequence>
+<postconditions><![CDATA[L'ospite NON effettua l'accesso al sistema.]]></postconditions>
+</ALT>

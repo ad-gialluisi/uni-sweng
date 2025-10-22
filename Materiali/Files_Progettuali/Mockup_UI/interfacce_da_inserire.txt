@@ -1,0 +1,27 @@
+
+A mio avviso le interfacce significative (da inserire dunque nello sprint
+report) sono:
+
+SPRINT 1:
+
+[ ] | VISUALIZZAZIONE_PROFILO_G_QC_PROPR       | Visualizzazione profilo Globetrotter, QuasiCicerone (da proprietario) ***
+[ ] | VISUALIZZAZIONE_PROFILO_CICERONE_PROPR   | Visualizzazione profilo Cicerone (da proprietario)
+[ ] | MODIFICA_PROFILO                         | Modifica profilo
+[ ] | MODIFICA_ANAGRAFICA_CICERONE             | Modifica anagrafica Cicerone
+[ ] | CREAZIONE_RICHIESTA_DISISCRIZIONE        | Creazione richiesta disiscrizione (come fruitore)
+[ ] | CREAZIONE_RICHIESTA_AGGIORNAMENTO        | Creazione richiesta aggiornamento (come Globetrotter)
+
+
+SPRINT 2:
+
+[ ] | HOME                                     | HOME
+[ ] | RICERCA                                  | Ricerca (ospiti e amministrazione)
+[ ] | VISUALIZZAZIONE_ITINERARIO               | Visualizzazione Itinerario (come ospite e amministratore)
+[ ] | CREAZIONE_ITINERARIO                     | Crea Itinerario
+
+
+SPRINT 3:
+
+[ ] | VISUALIZZAZIONE_FEEDBACK_DI_PARTECIPANTE | Visualizza feedback organizzatore di un fruitore (per tutti)
+[ ] | CREAZIONE_FEEDBACK_PARTECIPANTE          | Creazione feedback (come organizzatore verso i partecipanti)
+

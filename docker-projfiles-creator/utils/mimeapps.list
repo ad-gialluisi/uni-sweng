@@ -1,0 +1,20 @@
+[Added Associations]
+text/markdown=geany.desktop;
+text/plain=geany.desktop;
+text/html=geany.desktop;firefox-esr.desktop;
+application/x-dia-diagram=org.gnome.Dia.desktop;
+image/png=gpicview.desktop;
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
+application/pdf=mupdf.desktop;
+application/xhtml+xml=firefox-esr.desktop;
+
+
+[Default Applications]
+text/markdown=geany.desktop
+text/plain=geany.desktop
+application/x-dia-diagram=org.gnome.Dia.desktop
+image/png=gpicview.desktop
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop
+application/pdf=mupdf.desktop
+application/xhtml+xml=firefox-esr.desktop
+text/html=firefox-esr.desktop

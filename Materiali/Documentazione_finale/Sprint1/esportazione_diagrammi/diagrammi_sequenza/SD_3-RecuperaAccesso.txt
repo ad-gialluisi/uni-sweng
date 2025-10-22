@@ -1,0 +1,53 @@
+@startuml
+
+!include skin.h
+
+actor Ospite
+boundary vistaAccesso
+control controlloreAccesso
+control modelloUtente
+participant ciceroneDatabase
+
+Ospite -> vistaAccesso : elabora(dati)
+activate vistaAccesso
+vistaAccesso -> controlloreAccesso : richiediRecuperoAccesso(dati)
+activate controlloreAccesso
+controlloreAccesso -> controlloreAccesso : validaParametri(dati)
+activate controlloreAccesso
+
+alt I dati sono validi
+    controlloreAccesso -> modelloUtente : richiediRecuperoAccesso(email)
+    activate modelloUtente
+    
+    modelloUtente -> ciceroneDatabase : query(datiUtenti)
+    activate ciceroneDatabase
+    modelloUtente <<-- ciceroneDatabase : utente
+    
+    opt l'indirizzo email risulta appartenere ad un utente registrato
+        modelloUtente -> ciceroneDatabase : manipola(creaCodiceAttivazione)
+        deactivate ciceroneDatabase
+        note right of modelloUtente : Lo stato dell'utente diverrà "recuperando"
+    end
+    controlloreAccesso <<-- modelloUtente : codiceStato, codiceAttivazione, utente
+
+    alt L'utente è ora nello stato "recuperando"
+        controlloreAccesso -> controlloreAccesso : inviaCodiceAttivazione(codiceAttivazione)
+    else
+        controlloreAccesso -> controlloreAccesso : set(codiceStato, NO_SEGNALAZIONE)        
+    end
+else
+    controlloreAccesso -> controlloreAccesso : set(codiceStato, OPERAZIONE_FALLITA)
+end
+
+deactivate controlloreAccesso
+controlloreAccesso -> controlloreAccesso : setStatoOperazione(codiceStato)
+controlloreAccesso -> controlloreAccesso : setMessaggio(codiceStato)
+
+vistaAccesso -> controlloreAccesso : getStatoOperazione()
+vistaAccesso <<-- controlloreAccesso : statoOperazione
+deactivate controlloreAccesso
+
+vistaAccesso -> vistaAccesso : salvaMessaggioPerSchermata(paginaAccesso)
+vistaAccesso -> vistaAccesso : mandaA(paginaAccesso)
+
+@enduml

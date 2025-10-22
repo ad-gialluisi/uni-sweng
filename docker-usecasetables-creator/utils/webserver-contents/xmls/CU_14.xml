@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[14]]></id>
+<name><![CDATA[ConfermaTransizioneCicerone]]></name>
+<description><![CDATA[Dopo aver ricevuto la conferma dell'avvenuto accordo della richiesta di aggiornamento, un QuasiCicerone conferma la transizione a Cicerone.]]></description>
+<primary-actors><![CDATA[QuasiCicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[La richiesta di aggiornamento mandata quando l'utente era ancora Globetrotter deve essere stata accordata da un amministratore.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il QuasiCicerone chiede al sistema di confermare la transizione a Cicerone.
+<u>2</u> Il sistema provvede a confermare tale transizione.]]></sequence>
+<postconditions><![CDATA[Il QuasiCicerone è diventato Cicerone.
+Viene cambiato il tipo dell'utente da QuasiCicerone a Cicerone.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

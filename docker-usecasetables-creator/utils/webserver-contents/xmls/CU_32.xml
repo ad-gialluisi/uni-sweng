@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[32]]></id>
+<name><![CDATA[RilasciaFeedbackOrganizzatorePartecipante]]></name>
+<description><![CDATA[Un Cicerone organizzatore rilascia un feedback di tipo <i>organizzatore-partecipante</i> ad un fruitore partecipante ad un proprio itinerario.]]></description>
+<primary-actors><![CDATA[Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[DEVE ESISTERE una richiesta di partecipazione con stato <i>accordata</i> rispetto ad un proprio itinerario, inviata dal fruitore
+E
+L'itinerario deve essere nello stato <i>concluso</i>.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il Cicerone chiede al sistema di rilasciare un feedback organizzatore-partecipante nei confronti del fruitore.
+<u>2</u> Il sistema permette la creazione del feedback.
+<u>3</u> Il Cicerone inserisce i dati necessari.
+<u>4</u> Il Cicerone chiede al sistema di rilasciare il feedback organizzatore-partecipante con i dati inseriti.
+<u>5</u> Il sistema crea il nuovo feedback organizzatore-partecipante.]]></sequence>
+<postconditions><![CDATA[Il sistema crea un nuovo feedback organizzatore-partecipante.
+Esso sarà associato all'itinerario.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

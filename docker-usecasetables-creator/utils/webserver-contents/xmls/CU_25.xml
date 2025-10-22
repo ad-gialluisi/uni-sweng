@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[25]]></id>
+<name><![CDATA[InviaRichiestaPartecipazione]]></name>
+<description><![CDATA[Il fruitore invia una richiesta di partecipazione ad un itinerario scelto da lui.]]></description>
+<primary-actors><![CDATA[Globetrotter, QuasiCicerone, Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[NON DEVE ESISTERE una richiesta di partecipazione inviata dal fruitore per quel particolare itinerario.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il fruitore chiede al sistema di inviare una richiesta di partecipazione, rispetto all'itinerario scelto.
+<u>2</u> Il sistema provvede all'invio della richiesta di partecipazione, rispetto all'itinerario scelto.]]></sequence>
+<postconditions><![CDATA[Verrà creata una nuova richiesta di partecipazione per l'itinerario scelto, il suo stato sarà <i>accordanda</i>.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[26]]></id>
+<name><![CDATA[InviaRichiestaAnnullamento]]></name>
+<description><![CDATA[Il fruitore invia una richiesta di annullamento della partecipazione ad un itinerario, rispetto al quale aveva precedentemente inviato una richiesta di partecipazione.]]></description>
+<primary-actors><![CDATA[Globetrotter, QuasiCicerone, Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[DEVE ESISTERE una richiesta di partecipazione inviata dal fruitore per quel particolare itinerario, che sia nello stato <i>accordata</i>.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il fruitore chiede al sistema di inviare una richiesta di annullamento, rispetto ad una precedente richiesta di partecipazione al particolare itinerario.
+<u>2</u> Il sistema provvede ad inviare la richiesta di annullamento.]]></sequence>
+<postconditions><![CDATA[Il sistema cambierà lo stato della richiesta di partecipazione al particolare itinerario, da <i>accordata</i> ad <i>annullanda</i>.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

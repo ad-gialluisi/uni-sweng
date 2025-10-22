@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[33]]></id>
+<name><![CDATA[VisualizzaFeedback]]></name>
+<description><![CDATA[Visualizza un feedback associato ad un fruitore.]]></description>
+<primary-actors><![CDATA[Utente]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente chiede al sistema di visualizzare un particolare feedback.
+<u>2</u> Il sistema mostra i dettagli associati al particolare feedback.]]></sequence>
+<postconditions><![CDATA[L'utente visualizza i dettagli del particolare feedback.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

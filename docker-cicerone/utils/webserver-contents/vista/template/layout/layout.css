@@ -1,0 +1,483 @@
+/* Copyright (C) 2020 Antonio Daniele Gialluisi */
+
+/* This file is part of "Piattaforma Cicerone" */
+
+/* This program is free software: you can redistribute it and/or modify */
+/* it under the terms of the GNU General Public License as published by */
+/* the Free Software Foundation, either version 3 of the License, or */
+/* (at your option) any later version. */
+
+/* This program is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the */
+/* GNU General Public License for more details. */
+
+/* You should have received a copy of the GNU General Public License */
+/* along with this program. If not, see <https://www.gnu.org/licenses/>. */
+
+
+body {
+	background-color: #1cb51b;
+	font-size: 1.2rem;
+	word-wrap: break-word;
+}
+
+
+/*
+ * L'uso dell'unità "rem" è stato preferito per consentire un
+ * più facile adattamento per le persone con problematiche
+ * di ipovisione.
+ */
+
+
+/*
+ * Impostazioni di header e footer
+ */
+#header, #footer {
+	text-align: center;
+	background-color: #67df66;
+	padding: 1rem 1rem 1rem 1rem;
+	border: 0.1rem solid black;
+	border-radius: 1rem;
+	box-shadow: 0.2rem 0.2rem 0.5rem black;
+}
+
+
+.cicero-img {
+	vertical-align: middle;
+	border: 0.1rem solid black;
+	width: 4rem;
+	height: 5rem;
+}
+
+.title {
+	display: inline;
+}
+
+.sidebar-button {
+	width: 4rem;
+	height: 5rem;
+	cursor: pointer;
+}
+
+#header .layer1 .layer2 {
+	overflow-y: auto;
+}
+
+#header .header-title {
+	float: left;
+	text-align: left;
+}
+
+#header .header-sidebar-button {
+	float: right;
+	text-align: right;
+}
+
+.cicero-home-href {
+	cursor: pointer;
+	text-decoration: inherit;
+	color: inherit;
+}
+
+
+
+/*
+ * Messaggio in caso di javascript/CSS disabilitato
+ */
+.javascript-disabled-message, .css-disabled-message {
+	text-align: center;
+	margin-bottom: 2rem;
+	background-color: #ef2929;
+	padding: 1rem 1rem 1rem 1rem;
+	border: 0.1rem solid black;
+	border-radius: 1rem;
+	box-shadow: 0.2rem 0.2rem 0.5rem black;
+}
+
+.css-disabled-message {
+	display: none;
+}
+
+
+.javascript-disabled-message div, .css-disabled-message div {
+	background-color: #fd8b8b;
+	border-radius: 1rem;
+	padding: 1rem 1rem 1rem 1rem;
+}
+
+.javascript-disabled-message div div, .css-disabled-message div div {
+	background-color: #ffafaf;
+	border-radius: 1rem;
+	padding: 1rem 1rem 1rem 1rem;
+}
+
+
+/*
+ * Contenuti della pagina
+ */
+
+#content {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	background-color: #67df66;
+	padding: 1rem 1rem 1rem 1rem;
+	border: 0.1rem solid black;
+	border-radius: 1rem;
+	box-shadow: 0.2rem 0.2rem 0.5rem black;
+}
+
+/*
+ * Questi layer sono solo per "bellezza", se così si può definire.
+ * Grafica più spartana di questa non ne ho mai vista!
+ */
+.layer1 {
+	background-color: #b4ffb4;
+	padding: 1rem 1rem 1rem 1rem;
+	border-radius: 1rem;
+}
+
+.layer2 {
+	background-color: #defdde;
+	padding: 1rem 1rem 1rem 1rem;
+	border-radius: 1rem;
+	overflow-y: auto;
+}
+
+
+/*
+ * INIZIO Elementi usabili in più di una schermata
+ */
+.hidden {
+	display: none;
+}
+
+.block {
+	display: block;
+}
+
+.centered-text-screen {
+	text-align: center;
+}
+
+/*
+ * Titolo di una schermata
+ */
+.screen-title {
+	margin-top: 0;
+}
+
+.generic-button {
+	cursor: pointer;
+	padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+	background-color: #defdde;
+  	border-radius: 0.5rem;
+  	border: 0.1rem solid black;
+	font-size: 0.9rem;
+	text-decoration: inherit;
+	color: inherit;
+}
+
+.generic-button:hover {
+	background-color: #b4ffb4;
+}
+
+.generic-button:active {
+	background-color: #67df66;
+}
+
+.info-side {
+	float: left;
+	text-align: center;
+	width: 50%;
+}
+	
+.button-side {
+	float: right;
+	text-align: center;
+	width: 50%;
+}
+
+.button-side .generic-button {
+	width: 75%;
+	margin: auto;
+}
+
+
+.list-holder {
+	height: 40rem;
+	overflow-y: auto;
+	border: 0.1rem solid black;
+	text-align: center;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+
+.selectable-element {
+	cursor: pointer;
+}
+
+.selectable-element img {
+	width: 3rem;
+	height: 3rem;
+	vertical-align: middle;
+}
+
+/*
+ * FINE Elementi usabili in più di una schermata
+ */
+
+
+/*
+ * Altre dimensioni a seguire
+ */
+@media screen and (min-width: 42rem) and (max-width: 60rem) {
+	body {
+		font-size: 1.1rem;
+	}
+	
+	.title {
+		display: block;
+	}
+
+	#header .header-title {
+		float: none;
+		text-align: center;
+	}
+
+	#header .header-sidebar-button {
+		float: none;
+		text-align: center;
+	}
+	
+	/*
+	 * INIZIO Elementi usabili in più di una schermata
+ 	 */
+	.generic-button {
+  		border: 0.05rem solid black;
+	}
+	
+	.info-side {
+		float: left;
+		text-align: center;
+		width: 50%;
+	}
+	
+	.button-side {
+		float: right;
+		text-align: center;
+		width: 50%;
+	}
+	
+	.list-holder {
+		height: 30rem;
+		border: 0.1rem solid black;
+	}
+	/*
+	 * FILE Elementi usabili in più di una schermata
+ 	 */
+}
+
+
+
+@media screen and (min-width: 20rem) and (max-width: 42rem) {
+	body {
+		font-size: 1rem;
+	}
+
+	#header, #footer {
+		text-align: center;
+		padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+		border: 0.1rem solid black;
+		border-radius: 0.3rem;
+		box-shadow: 0.2rem 0.2rem 0.5rem black;
+	}
+
+	.cicero-img {
+		vertical-align: middle;
+		border: 0.05rem solid black;
+	}
+
+	.title {
+		display: block;
+	}
+
+	#header .header-title {
+		float: none;
+		text-align: center;
+	}
+
+	#header .header-sidebar-button {
+		float: none;
+		text-align: center;
+	}
+
+	.javascript-disabled-message {
+		text-align: center;
+		margin-bottom: 2rem;
+		padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+		border: 0.1rem solid black;
+		border-radius: 0.3rem;
+		box-shadow: 0.2rem 0.2rem 0.5rem black;
+	}
+
+	.javascript-disabled-message div {
+		border-radius: 0.3rem;
+		padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+	}
+
+	.javascript-disabled-message div div {
+		border-radius: 0.3rem;
+		padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+	}
+
+	#content {
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+		background-color: #67df66;
+		padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+		border: 0.1rem solid black;
+		border-radius: 0.3rem;
+		box-shadow: 0.2rem 0.2rem 0.5rem black;
+	}
+
+	.layer1 {
+		background-color: #b4ffb4;
+		padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+		border-radius: 0.3rem;
+	}
+
+	.layer2 {
+		background-color: #defdde;
+		padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+		border-radius: 0.3rem;
+		overflow-y: auto;
+	}
+	
+	/*
+	 * INIZIO Elementi usabili in più di una schermata
+ 	 */
+	.generic-button {
+  		border: 0.03rem solid black;
+	}
+	
+	.info-side {
+		float: none;
+		width: inherit;
+	}
+
+	.button-side {
+		float: none;
+		width: inherit;
+	}
+	
+	.list-holder {
+		height: 20rem;
+		border: 0.1rem solid black;
+	}
+	/*
+	 * FINE Elementi usabili in più di una schermata
+ 	 */
+}
+
+
+@media screen and (max-width: 20rem) {
+	body {
+		font-size: 0.8rem;
+	}
+	
+	.cicero-img {
+		vertical-align: middle;
+		border: 0.03rem solid black;
+	}
+
+	#header, #footer {
+		text-align: center;
+		padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+		border: 0.03rem solid black;
+		border-radius: 0.1rem;
+		box-shadow: 0.1rem 0.1rem 0.3rem black;
+	}
+
+	.title {
+		display: block;
+	}
+
+	#header .header-title {
+		float: none;
+		text-align: center;
+	}
+
+	#header .header-sidebar-button {
+		float: none;
+		text-align: center;
+	}
+
+	.generic-button {
+  		border: 0.01rem solid black;
+	}
+
+	.javascript-disabled-message {
+		text-align: center;
+		margin-bottom: 2rem;
+		padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+		border: 0.03rem solid black;
+		border-radius: 0.1rem;
+		box-shadow: 0.1rem 0.1rem 0.3rem black;
+	}
+
+	.javascript-disabled-message div {
+		background-color: #fd8b8b;
+		border-radius: 0.1rem;
+		padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+	}
+
+	.javascript-disabled-message div div {
+		border-radius: 0.1rem;
+		padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+	}
+
+	#content {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+		border: 0.03rem solid black;
+		border-radius: 0.1rem;
+		box-shadow: 0.1rem 0.1rem 0.3rem black;
+	}
+
+	.layer1 {
+		padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+		border-radius: 0.1rem;
+	}
+
+	.layer2 {
+		padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+		border-radius: 0.1rem;
+		overflow-y: auto;
+	}
+	
+	/*
+	 * INIZIO Elementi usabili in più di una schermata
+ 	 */
+	.info-side {
+		float: none;
+		width: inherit;
+	}
+
+	.button-side {
+		float: none;
+		width: inherit;
+	}
+
+	.list-holder {
+		border: 0.03rem solid black;
+		height: 10rem;
+	}
+	/*
+	 * FINE Elementi usabili in più di una schermata
+ 	 */
+}

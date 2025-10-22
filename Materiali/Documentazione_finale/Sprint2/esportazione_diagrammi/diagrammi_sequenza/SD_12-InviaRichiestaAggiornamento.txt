@@ -1,0 +1,38 @@
+@startuml
+
+!include skin.h
+
+actor Globetrotter
+boundary vistaAmministrazione
+control controlloreAmministrazione
+control modelloAmministrazione
+
+Globetrotter -> vistaAmministrazione : elabora(dati)
+activate vistaAmministrazione
+vistaAmministrazione -> controlloreAmministrazione : richiediInvioRichiestaAggiornamento(dati)
+activate controlloreAmministrazione
+controlloreAmministrazione -> controlloreAmministrazione : validaParametri(dati)
+activate controlloreAmministrazione
+
+alt I dati sono validi
+    controlloreAmministrazione -> modelloAmministrazione : inviaRichiestaAggiornamento(idUtente, datiAnagraficiUtente)
+    activate modelloAmministrazione
+    controlloreAmministrazione <<-- modelloAmministrazione : codiceStato
+    deactivate modelloAmministrazione
+    controlloreAmministrazione -> controlloreAmministrazione : set(codiceStato, OPERAZIONE_RIUSCITA)
+else
+    controlloreAmministrazione -> controlloreAmministrazione : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreAmministrazione
+
+controlloreAmministrazione -> controlloreAmministrazione : setStatoOperazione(codiceStato)
+controlloreAmministrazione -> controlloreAmministrazione : setMessaggio(codiceStato)
+
+vistaAmministrazione -> controlloreAmministrazione : getStatoOperazione()
+vistaAmministrazione <<-- controlloreAmministrazione : statoOperazione
+deactivate controlloreAmministrazione
+
+vistaAmministrazione -> vistaAmministrazione : salvaMessaggioPerSchermata(paginaProfilo)
+vistaAmministrazione -> vistaAmministrazione : mandaA(paginaProfilo)
+
+@enduml

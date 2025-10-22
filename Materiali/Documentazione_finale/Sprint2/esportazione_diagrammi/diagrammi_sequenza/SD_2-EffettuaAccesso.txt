@@ -1,0 +1,52 @@
+@startuml
+
+!include skin.h
+
+actor Ospite
+boundary vistaAccesso
+control controlloreAccesso
+control modelloProfilo
+control ciceroneDatabase
+
+Ospite -> vistaAccesso : elabora(dati)
+activate vistaAccesso
+vistaAccesso -> controlloreAccesso : richiediAccesso(dati)
+activate controlloreAccesso
+controlloreAccesso -> controlloreAccesso : validaParametri(dati)
+activate controlloreAccesso
+
+alt i dati sono validi
+    controlloreAccesso -> modelloProfilo : consentiAccesso(nomeutente, password)
+    activate modelloProfilo
+    
+    modelloProfilo -> ciceroneDatabase : query(datiUtente)
+    modelloProfilo <<-- ciceroneDatabase : utente
+
+    opt L'utente è nello stato "recuperando"
+        modelloProfilo -> ciceroneDatabase : manipola(impostaStatoUtenteAttivato)
+    end
+    controlloreAccesso <<-- modelloProfilo : codiceStato, utente
+    deactivate modelloProfilo
+
+
+    alt L'utente è nello stato "inserito"\nOPPURE\nle credenziali non sono corrette
+        controlloreAccesso -> controlloreAccesso : set(codiceStato, OPERAZIONE_FALLITA)
+    else
+        controlloreAccesso -> controlloreAccesso : setSessione(utente)
+    end
+else
+    controlloreAccesso -> controlloreAccesso : set(codiceStato, OPERAZIONE_FALLITA)
+end
+
+deactivate controlloreAccesso
+controlloreAccesso -> controlloreAccesso : setStatoOperazione(codiceStato)
+controlloreAccesso -> controlloreAccesso : setMessaggio(codiceStato)
+
+vistaAccesso -> controlloreAccesso : getStatoOperazione()
+vistaAccesso <<-- controlloreAccesso : statoOperazione
+deactivate controlloreAccesso
+
+vistaAccesso -> vistaAccesso : salvaMessaggioPerSchermata(paginaAccesso)
+vistaAccesso -> vistaAccesso : mandaA(paginaAccesso)
+
+@enduml

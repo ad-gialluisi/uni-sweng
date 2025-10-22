@@ -1,0 +1,57 @@
+<!-- Copyright (C) 2020 Antonio Daniele Gialluisi -->
+
+<!-- This file is part of "Piattaforma Cicerone" -->
+
+<!-- This program is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- This program is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with this program. If not, see <https://www.gnu.org/licenses/>. -->
+
+
+<div id="sidebar">
+	<div class="layer1">
+		<div class="layer2">
+        	<div class="sidebar-close-button-container">
+        		<img class="sidebar-close-button" src="vista/immagini/chiusura.png" alt="Pulsante chiusura sidebar" onclick="sidebar.toggle()"/>
+		    </div>
+		    \@is-connesso{
+		    	<p>
+					<a class="profile-link" href = "\@profilo-id-utente"><img src="\@immagine-utente" class="user-img-sidebar" alt="immagine utente"/><br>\@nome-utente</a>
+				</p>
+			\@}
+
+			<div class="sidebar-elements-container">
+				\@is-ospite{
+					<a class="generic-button block" href="\@form-accesso">Accedi</a>
+					<a class="generic-button block" href="\@form-registrazione">Registrati</a>
+					<a class="generic-button block" href="\@form-recupero-accesso">Recupera accesso</a>
+				\@}
+				\@is-cicerone{
+					<a class="generic-button block" href="\@form-itinerari-organizzatore">I miei itinerari</a>
+				\@}
+				\@is-fruitore{
+					<a class="generic-button block" href="\@form-itinerari-partecipante">Itinerari a cui partecipo/ho partecipato</a>
+					<a class="generic-button block" href="\@form-feedback-utente">I miei feedback</a>
+				\@}
+				\@is-amministratore{
+					<a class="generic-button block" href="\@form-richieste-ammin">Richieste d'amministrazione</a>
+				\@}
+				\@is-connesso{
+					<a class="generic-button block" href="\@form-disconnessione">Disconnetti</a>
+				\@}
+				<a class="generic-button block" href="\@form-home">Home</a>
+				<a class="generic-button block" href="\@form-ricerca-itinerari">Ricerca</a>
+				<a class="generic-button block" href="\@form-chi-siamo">Chi siamo</a>
+			</div>
+		</div>
+	</div>
+</div>
+

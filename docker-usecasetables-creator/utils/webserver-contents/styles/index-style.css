@@ -1,0 +1,79 @@
+.hidden {
+    display: none;
+}
+
+input[type=text] {
+    width: 500px;
+    background-color: #DDF4F9;
+    border-style: none;
+}
+
+textarea {
+    width: 500px;
+    height: 200px;
+    min-height: 200px;
+    border-style: none;
+    background-color: #DDF4F9;
+}
+
+.reminder-btn {
+    margin-bottom: 20px;
+    display: block;
+}
+
+.actions-panel {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.actions-panel2 {
+    margin-top: -5px;
+}
+
+#control-panel {
+    margin-bottom: 70px;
+}
+
+.cc {
+    display: inline;
+}
+
+#fields-editor {
+    width: 700px;
+}
+
+#fields-editor > div > span {
+    display: inline-block;
+    width: 25%;
+}
+
+#fields-editor > div > select {
+    display: inline-block;
+    width: 70%;
+}
+
+#fields-editor > div > input {
+    display: inline-block;
+    width: 70%;
+}
+
+#fields-editor > div > textarea {
+    display: inline-block;
+    width: 70%;
+    resize: vertical;
+}
+
+#fields-editor > div > textarea:disabled,
+#fields-editor > div > input:disabled {
+    background-color: #FFCFCF
+}
+
+.label {
+    font-style: italic;
+    vertical-align: top;
+}
+
+.field {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

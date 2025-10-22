@@ -1,0 +1,113 @@
+/* Copyright (C) 2020 Antonio Daniele Gialluisi */
+
+/* This file is part of "Piattaforma Cicerone" */
+
+/* This program is free software: you can redistribute it and/or modify */
+/* it under the terms of the GNU General Public License as published by */
+/* the Free Software Foundation, either version 3 of the License, or */
+/* (at your option) any later version. */
+
+/* This program is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the */
+/* GNU General Public License for more details. */
+
+/* You should have received a copy of the GNU General Public License */
+/* along with this program. If not, see <https://www.gnu.org/licenses/>. */
+
+
+.popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	padding: 1rem 1rem 1rem 1rem;
+	box-shadow: 0.2rem 0.2rem 0.5rem black;
+	z-index: 2;
+	display: none;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+.popup-content {
+	background-color: #67df66;
+  	margin: 11% auto;
+	padding: 1rem 1rem 1rem 1rem;
+	border: 0.1rem solid black;
+	border-radius: 1rem;
+	width: 50%;
+	opacity: 100%;
+}
+
+
+.popup-close-button-container {
+	text-align: right;
+	padding: 0rem 0rem 0.5rem 0.5rem;
+}
+
+
+.popup-close-button {
+	cursor: pointer;
+	vertical-align: middle;
+	border: 0.1rem solid black;
+	width: 1.2rem;
+	height: 1.2rem;
+}
+
+
+@media screen and (min-width: 42rem) and (max-width: 60rem) {
+	.popup-close-button {
+		border: 0.05rem solid black;
+	}
+}
+
+
+@media screen and (min-width: 20rem) and (max-width: 42rem) {
+	.popup {
+		padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+		border: 0.1rem solid black;
+  		border-radius: 0.5rem;
+  		box-shadow: 0.2rem 0.2rem 0.5rem black;
+	}
+
+	.popup-content {
+		background-color: #67df66;
+		padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+		border: 0.1rem solid black;
+		border-radius: 0.5rem;
+	}
+
+	.popup-close-button-container {
+		padding: 0rem 0rem 0.3rem 0.3rem;
+	}
+	
+	.popup-close-button {
+		border: 0.03rem solid black;
+	}
+}
+
+
+@media screen and (max-width: 20rem) {
+	.popup {
+		padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+		border: 0.1rem solid black;
+		border-radius: 0.1rem;
+		box-shadow: 0.1rem 0.1rem 0.3rem black;
+	}
+
+	.popup-content {
+		padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+		border: 0.1rem solid black;
+		border-radius: 0.1rem;
+	}
+
+	.popup-close-button {
+	  	border: 0.01rem solid black;
+	}
+
+	.popup-close-button-container {
+		padding: 0rem 0rem 0.1rem 0.1rem;
+	}
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[4]]></id>
+<name><![CDATA[DisconnettiUtente]]></name>
+<description><![CDATA[L'utente registrato effettua la disconnessione dal sistema.]]></description>
+<primary-actors><![CDATA[Globetrotter, QuasiCicerone, Cicerone, Amministratore]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'utente registrato deve aver effettuato l'accesso al sistema.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente registrato chiede al sistema di effettuare la disconnessione.
+<u>2</u> Il sistema disconnette l'utente registrato.]]></sequence>
+<postconditions><![CDATA[L'utente registrato torna ad essere un utente ospite.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

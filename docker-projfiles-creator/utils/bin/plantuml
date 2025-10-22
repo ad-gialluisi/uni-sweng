@@ -1,0 +1,5 @@
+#!/bin/bash
+
+SCRIPT_DIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
+
+java -jar /root/installers/plantuml-gplv2-1.2025.7.jar

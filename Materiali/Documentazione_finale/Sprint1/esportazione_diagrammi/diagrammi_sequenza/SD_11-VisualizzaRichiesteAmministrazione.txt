@@ -1,0 +1,23 @@
+@startuml
+
+!include skin.h
+
+actor Amministratore
+boundary vistaAmministrazione
+control controlloreAmministrazione
+control modelloAmministrazione
+
+Amministratore -> vistaAmministrazione : disegna()
+activate vistaAmministrazione
+vistaAmministrazione -> vistaAmministrazione : schermataRichiesteAmministrazione()
+activate vistaAmministrazione
+
+vistaAmministrazione -> controlloreAmministrazione : richiediRichiesteAmministrazione()
+activate controlloreAmministrazione
+
+controlloreAmministrazione -> modelloAmministrazione : getRichiesteAmministrazione()
+controlloreAmministrazione <<-- modelloAmministrazione : richieste
+vistaAmministrazione <<-- controlloreAmministrazione : richieste
+vistaAmministrazione -> vistaAmministrazione : mostraRichiesteAmministrazione(richieste)
+
+@enduml

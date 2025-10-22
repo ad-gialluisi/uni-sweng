@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[16]]></id>
+<name><![CDATA[ModificaItinerario]]></name>
+<description><![CDATA[Il Cicerone modifica le informazioni associate ad un proprio itinerario.]]></description>
+<primary-actors><![CDATA[Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Il Cicerone deve aver effettuato l'accesso.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il Cicerone chiede al sistema la modifica di un suo particolare itinerario.
+<u>2</u> Il sistema permette la modifica dell'itinerario.
+<u>3</u> Il Cicerone modifica i dettagli dell'itinerario.
+<u>4</u> Il Cicerone chiede al sistema di memorizzare le modifiche apportate.
+<u>5</u> Il sistema effettua il salvataggio dei dati.]]></sequence>
+<postconditions><![CDATA[Il sistema aggiornerà le informazioni dell'itinerario in base alle modifiche fatte dal Cicerone.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

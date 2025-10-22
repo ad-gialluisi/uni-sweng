@@ -1,0 +1,44 @@
+@startuml
+
+!include skin.h
+
+actor Utente
+boundary vistaItinerario
+control controlloreItinerario
+control modelloItinerario
+participant ciceroneDatabase
+
+
+Utente -> vistaItinerario : disegna()
+activate vistaItinerario
+vistaItinerario -> vistaItinerario : schermataVisualizzazioneRichiestePartecipazione()
+activate vistaItinerario
+vistaItinerario -> controlloreItinerario : richiediRichiestePartecipazione(idItinerario, preferenza)
+activate controlloreItinerario
+
+note right of vistaItinerario : idItinerario lo si ottiene\ncome parametro GET
+
+controlloreItinerario -> modelloItinerario : getRichiestePartecipazione(idItinerario, preferenza)
+activate modelloItinerario
+
+modelloItinerario -> ciceroneDatabase : query(datiItinerario)
+activate ciceroneDatabase
+modelloItinerario <<-- ciceroneDatabase : datiItinerario
+
+alt se preferenza significa "mostra solo partecipazioni accordate"
+    modelloItinerario -> ciceroneDatabase : query(richiestePartecipazioneAccordate)
+else else
+    modelloItinerario -> ciceroneDatabase : query(richiestePartecipazioneAccordate)
+end
+activate modelloItinerario
+
+modelloItinerario <<-- ciceroneDatabase : richieste
+deactivate ciceroneDatabase
+controlloreItinerario <<-- modelloItinerario : richieste
+deactivate modelloItinerario
+vistaItinerario <<-- controlloreItinerario : richieste
+deactivate controlloreItinerario
+
+vistaItinerario -> vistaItinerario : mostraRichiestePartecipazioneItinerario(richieste)
+
+@enduml

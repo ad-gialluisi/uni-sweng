@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[20]]></id>
+<name><![CDATA[AnnullaRichiestaPartecipazione]]></name>
+<description><![CDATA[Annulla una richiesta di partecipazione già accordata.]]></description>
+<primary-actors><![CDATA[Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Un fruitore partecipante deve aver inviato una richiesta di annullamento per un particolare itinerario
+E
+lo stato di tale richiesta deve essere <i>annullanda</i>.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il Cicerone chiede al sistema di annullare una richiesta di partecipazione in particolare.
+<u>2</u> Il sistema rimuove la richiesta di partecipazione.]]></sequence>
+<postconditions><![CDATA[Il Cicerone avendo annullato una richiesta di partecipazione precedentemente accordata, precluderà il fruitore che ha inviato tale richiesta dal divenire partecipante effettivo all'itinerario.
+La richiesta di partecipazione verrà rimossa.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

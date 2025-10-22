@@ -1,0 +1,43 @@
+@startuml
+
+!include skin.h
+
+actor Amministratore
+boundary vistaAmministrazione
+control controlloreAmministrazione
+control modelloAmministrazione
+participant ciceroneDatabase
+
+Amministratore -> vistaAmministrazione : elabora(dati)
+activate vistaAmministrazione
+vistaAmministrazione -> controlloreAmministrazione : richiediTrasformazioneInQuasiCicerone(dati)
+activate controlloreAmministrazione
+controlloreAmministrazione -> controlloreAmministrazione : validaParametri(dati)
+activate controlloreAmministrazione
+
+alt I dati sono validi
+    controlloreAmministrazione -> modelloAmministrazione : trasformaInQuasiCicerone(idUtente)
+    activate modelloAmministrazione
+    modelloAmministrazione -> ciceroneDatabase : manipola(trasformazione)
+    activate ciceroneDatabase
+    deactivate ciceroneDatabase
+    note right of modelloAmministrazione : il record della richiesta\nd'aggiornamento\nverrà eliminato
+    controlloreAmministrazione <<-- modelloAmministrazione : codiceStato
+    deactivate modelloAmministrazione
+    controlloreAmministrazione -> controlloreAmministrazione : set(codiceStato, OPERAZIONE_RIUSCITA)
+else
+    controlloreAmministrazione -> controlloreAmministrazione : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreAmministrazione
+
+controlloreAmministrazione -> controlloreAmministrazione : setStatoOperazione(codiceStato)
+controlloreAmministrazione -> controlloreAmministrazione : setMessaggio(codiceStato)
+
+vistaAmministrazione -> controlloreAmministrazione : getStatoOperazione()
+vistaAmministrazione <<-- controlloreAmministrazione : statoOperazione
+deactivate controlloreAmministrazione
+
+vistaAmministrazione -> vistaAmministrazione : salvaMessaggioPerSchermata(paginaReqAmministrazione)
+vistaAmministrazione -> vistaAmministrazione : mandaA(paginaReqAmministrazione)
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+
+!include skin.h
+
+actor Cicerone
+boundary vistaItinerario
+control controlloreItinerario
+control modelloItinerario
+participant ciceroneDatabase
+
+Cicerone -> vistaItinerario : elabora(dati)
+activate vistaItinerario
+vistaItinerario -> controlloreItinerario : richiediCreazioneItinerario(dati)
+activate controlloreItinerario
+controlloreItinerario -> controlloreItinerario : validaParametri(dati)
+activate controlloreItinerario
+
+alt I dati sono validi
+    controlloreItinerario -> modelloItinerario : creaItinerario(datiItinerario)
+    activate modelloItinerario
+
+    modelloItinerario -> ciceroneDatabase : manipola(aggiungiNuovoItinerario)
+    activate ciceroneDatabase
+
+    note right of modelloItinerario : lo stato dell'itinerario è\nimpostato ad "aperto"
+    deactivate ciceroneDatabase
+
+    controlloreItinerario <<-- modelloItinerario : codiceStato
+    deactivate modelloItinerario
+else
+    controlloreItinerario -> controlloreItinerario : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreItinerario
+
+controlloreItinerario -> controlloreItinerario : setStatoOperazione(codiceStato)
+controlloreItinerario -> controlloreItinerario : setMessaggio(codiceStato)
+
+vistaItinerario -> controlloreItinerario : getStatoOperazione()
+vistaItinerario <<-- controlloreItinerario : statoOperazione
+deactivate controlloreItinerario
+
+vistaItinerario -> vistaItinerario : salvaMessaggioPerSchermata(paginaListaItinerari)
+vistaItinerario -> vistaItinerario : mandaA(paginaListaItinerari)
+
+@enduml

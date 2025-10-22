@@ -1,0 +1,45 @@
+@startuml
+
+!include skin.h
+
+actor UtenteRegistrato
+boundary vistaNotifica
+control controlloreNotifica
+control modelloNotifica
+
+note over UtenteRegistrato : ovvero uno tra,\nGlobetrotter, QuasiCicerone,\nCicerone, Amministratore
+
+UtenteRegistrato -> vistaNotifica : elabora(dati)
+activate vistaNotifica
+vistaNotifica -> controlloreNotifica : richiediNotifiche(dati)
+activate controlloreNotifica
+controlloreNotifica -> controlloreNotifica : validaParametri(dati)
+activate controlloreNotifica
+
+alt I dati sono validi
+    alt Vengono richieste tutte le notifiche
+        controlloreNotifica -> modelloNotifica : getNotifiche(idUtente, tutte)
+        activate modelloNotifica
+    else else
+        controlloreNotifica -> modelloNotifica : getNotifiche(idUtente, ultimaDataCreazione)
+    end
+
+    controlloreNotifica <<-- modelloNotifica : codiceStato, notifiche
+    deactivate modelloNotifica
+else
+    controlloreNotifica -> controlloreNotifica : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreNotifica
+
+controlloreNotifica -> controlloreNotifica : setStatoOperazione(codiceStato)
+controlloreNotifica -> controlloreNotifica : setMessaggio(codiceStato)
+vistaNotifica <<-- controlloreNotifica : notifiche
+
+vistaNotifica -> controlloreNotifica : getStatoOperazione()
+vistaNotifica <<-- controlloreNotifica : statoOperazione
+deactivate controlloreNotifica
+
+opt L'operazione è andata a buon fine
+    vistaNotifica -> vistaNotifica : mostraNotifiche(notifiche)
+end
+@enduml

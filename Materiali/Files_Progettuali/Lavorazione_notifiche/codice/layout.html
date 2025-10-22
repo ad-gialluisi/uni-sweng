@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>\@titolo</title>
+        <meta charset="utf-8"/>
+        \@stile
+        \@headjavascript
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    </head>
+    <body>
+        <div class="css-disabled-message">
+			<div>
+		    	<div>
+	    			<strong>Per utilizzare questo sito al meglio è necessario abilitare CSS.</strong>
+            	</div>
+	        </div>
+	    </div>
+        <noscript>
+        	<div class="javascript-disabled-message">
+				<div>
+		            <div>
+	    		        <strong>Per utilizzare questo sito è necessario abilitare Javascript.</strong>
+            		</div>
+	            </div>
+	        </div>
+        </noscript>
+
+        <div id="header">
+        	<div class="layer1">
+        		<div class="layer2">
+		            <div class="header-title">
+    		            <img class="cicero-img" src="vista/immagini/cicerone.jpg" alt="Immagine di Marco Tullio Cicerone"/>
+        		        <h1 class="title">Cicerone</h1>
+	           		</div>
+	           		\@is-connesso{
+        			<div class="notification-button-container" onclick="new Popup('popup-notifiche').toggle()">
+        				<span id="notification-count">500</span>
+        				<img class="notification-button-img" src="vista/immagini/notifica.png" alt="Pulsante notifiche"/>
+	        		</div>
+    	    		\@}
+           			<div class="header-sidebar-button">
+                		<img class="sidebar-button" src="vista/immagini/sidebar.png" alt="Pulsante per apertura sidebar" onclick="sidebar.toggle()"/>
+		            </div>
+            	</div>
+            </div>
+	    </div>
+
+		\@sidebar
+
+        <div id="content">
+        	<div class="layer1">
+        		<div class="layer2">
+            	\@contenuti
+           		</div>
+            </div>
+        </div>
+
+        <div id="footer">
+        	<div class="layer1">
+        		<div class="layer2">
+	            Powered by Antonio Daniele Enterprise
+	            </div>
+	        </div>
+        </div>
+
+		\@popups
+
+        \@bodyjavascript
+    </body>
+</html>

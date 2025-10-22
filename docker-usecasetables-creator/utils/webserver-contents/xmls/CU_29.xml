@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[29]]></id>
+<name><![CDATA[ModificaPreferenzeNotifica]]></name>
+<description><![CDATA[Modifica le preferenze di notifica.]]></description>
+<primary-actors><![CDATA[Globetrotter, QuasiCicerone, Cicerone, Amministratore]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'utente registrato deve aver effettuato l'accesso.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente registrato chiede al sistema di modificare le preferenze di notifica.
+<u>2</u> Il sistema permette la modifica delle preferenze di notifica.
+<u>2</u> L'utente registrato modifica le impostazioni.
+<u>3</u> L'utente registrato chiede al sistema di applicare le nuove impostazioni.
+<u>4</u> Il sistema provvede ad applicare e salvare le nuove impostazioni.]]></sequence>
+<postconditions><![CDATA[Il sistema cambierà in base alle scelte dell'utente registrato, le preferenze di notifica.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

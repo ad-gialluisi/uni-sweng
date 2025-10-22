@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ALT>
+<id><![CDATA[5.3]]></id>
+<name><![CDATA[AttivaUtente:Recupero]]></name>
+<description><![CDATA[L'utente registrato ha bisogno di essere recuperato.
+Il sistema consentirà di reimpostare la password.]]></description>
+<primary-actors><![CDATA[Ospite]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'utente registrato è nello stato <i>recuperando</i>.]]></preconditions>
+<execution-step><![CDATA[Dopo il passo <u>1</u> di <i><u>CU_5</u></i>]]></execution-step>
+<sequence><![CDATA[<u>1</u> Il sistema permette il reinserimento della password.
+<u>2</u> L'ospite inserisce la password.
+<u>3</u> Fintantochè la verifica della password fallisce:
+<u>3.1</u> Il sistema invita l'ospite a riprovare l'inserimento.
+<u>4</u> Il sistema memorizza la nuova password.
+<u>5</u> Il sistema rimuove il codice d'attivazione.
+<u>6</u> Il sistema imposta lo stato dell'utente registrato ad <i>attivato</i>.
+<u>7</u> Il sistema mostra un messaggio inerente l’accaduto.]]></sequence>
+<postconditions><![CDATA[L'utente registrato può essere riutilizzato per accedere.]]></postconditions>
+</ALT>

@@ -1,0 +1,28 @@
+@startuml
+
+!include skin.h
+
+actor Utente
+boundary vistaFeedback
+control controlloreFeedback
+control modelloFeedback
+
+Utente -> vistaFeedback : disegna()
+activate vistaFeedback
+vistaFeedback -> vistaFeedback : schermataVisualizzazioneFeedback()
+activate vistaFeedback
+vistaFeedback -> controlloreFeedback : richiediFeedback(id)
+activate controlloreFeedback
+
+note right of vistaFeedback : id lo si ottiene\ncome parametro GET
+
+controlloreFeedback -> modelloFeedback : getFeedback(id)
+activate modelloFeedback
+controlloreFeedback <<-- modelloFeedback : feedback
+deactivate modelloFeedback
+vistaFeedback <<-- controlloreFeedback : feedback
+deactivate controlloreFeedback
+
+vistaFeedback -> vistaFeedback : mostraFeedback(feedback)
+
+@enduml

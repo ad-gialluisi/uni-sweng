@@ -1,0 +1,98 @@
+/* Copyright (C) 2020 Antonio Daniele Gialluisi */
+
+/* This file is part of "Piattaforma Cicerone" */
+
+/* This program is free software: you can redistribute it and/or modify */
+/* it under the terms of the GNU General Public License as published by */
+/* the Free Software Foundation, either version 3 of the License, or */
+/* (at your option) any later version. */
+
+/* This program is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the */
+/* GNU General Public License for more details. */
+
+/* You should have received a copy of the GNU General Public License */
+/* along with this program. If not, see <https://www.gnu.org/licenses/>. */
+
+
+.itinerario-img {
+	border: 0.1rem solid black;
+	width: 10rem;
+	height: 10rem;
+}
+
+form input[type="submit"] {
+	margin-top: 2%;
+	font-size: 1rem;
+}
+
+input[type=text], input[type=date], input[type=time] {
+	font-size: 1rem;
+}
+
+textarea {
+	width: 50%;
+	font-size: 1rem;
+	resize: none;
+	max-width:50%;
+	height: 5rem;
+}
+
+form label {
+	font-size: 1.2rem;
+}
+
+select {
+	font-size: 1rem;
+}
+
+.make-itinerary-button {
+	width: 50%
+}
+
+#itinerary-selector {
+	width: 50%
+}
+
+.itinerary-search-results {
+	margin-top: 5rem;
+	clear: both;
+}
+
+@media screen and (min-width: 42rem) and (max-width: 60rem) {
+	.itinerario-img {
+		width: 7rem;
+		height: 7rem;
+	}
+	
+	.itinerary-search-results {
+		margin-top: 0.7rem;
+		clear: both;
+	}
+}
+
+
+@media screen and (min-width: 20rem) and (max-width: 42rem) {
+	.itinerario-img {
+		width: 5rem;
+		height: 5rem;
+	}
+	
+	.itinerary-search-results {
+		margin-top: 0.5rem;
+		clear: both;
+	}
+}
+
+@media screen and (max-width: 20rem) {
+	.itinerario-img {
+		width: 3rem;
+		height: 3rem;
+	}
+	
+	.itinerary-search-results {
+		margin-top: 0.3rem;
+		clear: both;
+	}
+}

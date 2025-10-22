@@ -1,0 +1,134 @@
+<!-- Copyright (C) 2020 Antonio Daniele Gialluisi -->
+
+<!-- This file is part of "Piattaforma Cicerone" -->
+
+<!-- This program is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- This program is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with this program. If not, see <https://www.gnu.org/licenses/>. -->
+
+
+\@schermata-richieste-amministrazione{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+    <h3 class="screen-title">Richieste d'amministrazione</h3>
+
+	<p class="requests-paragraph">
+		<select onchange="mostraMenuTramiteSelect(this)">
+			<option selected="selected" value="richieste-aggiornamento">Richieste di aggiornamento</option>
+			<option value="richieste-disiscrizione">Richieste di disisicrizione</option>
+		</select>
+	</p>
+
+	<div class="list-holder">
+		<div id="richieste-aggiornamento">
+			\@richieste-aggiornamento
+		</div>
+	
+		<div id="richieste-disiscrizione" class="hidden">
+			\@richieste-disiscrizione
+		</div>
+	</div>
+</div>
+\@}
+
+\@schermata-creazione-richiesta-disiscrizione{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+    <h3 class="screen-title">Creazione della richiesta di disiscrizione</h3>
+
+	<form action="\@form-req-invio-disiscrizione" method="post">
+		<label>Motivi</label><br>
+        <textarea name="\@campo-descrizione"></textarea><br/>
+        <input class="generic-button" type="submit" value="Invia richiesta"/>
+    </form>
+</div>
+\@}
+
+\@schermata-creazione-richiesta-aggiornamento{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+    <h3 class="screen-title">Creazione della richiesta di aggiornamento a Cicerone</h3>
+
+    <form action="\@form-req-invio-aggiornamento" method="post">
+        <label>Nome</label><br>
+        <input type="text" name="\@campo-nome" value=""><br/>
+        <label>Cognome</label><br>
+        <input type="text" name="\@campo-cognome" value=""><br/>
+        <label>Data di nascita</label><br>
+        <input type="date" name="\@campo-data-nascita" value=""><br/>
+        <label>Luogo di nascita</label><br>
+        <input type="text" name="\@campo-luogo-nascita" value=""><br/>
+        <label>Luogo di residenza</label><br>
+        <input type="text" name="\@campo-residenza" value=""><br/>
+        <label>Telefono</label><br>
+        <input type="text" name="\@campo-telefono" value=""><br/>
+        <label>Codice fiscale</label><br>
+        <input type="text" name="\@campo-codice-fiscale" value=""><br/>
+        <input class="generic-button" type="submit" value="Invia richiesta"/>
+    </form>
+</div>
+\@}
+
+\@schermata-visualizzazione-richiesta-disiscrizione{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+	\@richiesta-trovata{
+    	<h3 class="screen-title">Richiesta di disiscrizione di <a href="\@form-scr-profilo-fruitore">\@nome-utente</a></h3>
+
+		Motivo:
+		<p>
+    		\@descrizione-disiscrizione
+		</p>
+	
+		<form action="\@form-req-disiscrizione" method="post">
+     		<input type="hidden" name="\@campo-id-fruitore" value="\@valore-id-fruitore" />
+        	<input class="generic-button" type="submit" value="Accorda richiesta"/>
+	    </form>
+	\@}
+	\@richiesta-non-trovata{
+		<h3 class="screen-title">La richiesta di disiscrizione specificata non è stata trovata.</h3>
+		<p>Eh niente, questo è successo.</p>
+	\@}
+</div>
+\@}
+
+\@schermata-visualizzazione-richiesta-aggiornamento{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+	\@richiesta-trovata{
+    	<h3 class="screen-title">Richiesta di aggiornamento di <a href="\@form-scr-profilo-globetrotter">\@nome-utente</a></h3>
+		<p>
+    	    <strong>Nome</strong>: \@nome<br>        
+        	<strong>Cognome</strong>: \@cognome<br/>
+        	<strong>Data di nascita</strong>: \@data-nascita<br/>
+        	<strong>Luogo di nascita</strong>: \@luogo-nascita<br/>
+        	<strong>Luogo di residenza</strong>: \@residenza<br/>
+        	<strong>Telefono</strong>: 	\@telefono<br/>
+        	<strong>Codice fiscale</strong>: \@codice-fiscale<br/>
+	    </p>
+
+	    <form action="\@form-req-transquasicicerone" method="post">
+    		<input type="hidden" name="\@campo-id-globetrotter" value="\@valore-id-globetrotter" />
+			<input class="generic-button" type="submit" value="Accorda richiesta"/>
+    	</form>
+	\@}
+	\@richiesta-non-trovata{
+		<h3 class="screen-title">La richiesta d'aggiornamento specificata non è stata trovata.</h3>
+		<p>Eh niente, questo è successo.</p>
+	\@}
+</div>
+\@}

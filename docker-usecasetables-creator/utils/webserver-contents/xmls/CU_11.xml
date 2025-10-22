@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[11]]></id>
+<name><![CDATA[VisualizzaRichiesteAmministrazione]]></name>
+<description><![CDATA[Un amministratore visualizza le richieste d’amministrazione disponibili.]]></description>
+<primary-actors><![CDATA[Amministratore]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'amministratore deve aver effettuato l'accesso al sistema.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'amministratore chiede al sistema di visualizzare le richieste d'amministrazione disponibili.
+<u>2</u> Il sistema mostra la pagina inerente le richieste d'amministrazione.
+<u>3</u> L'amministratore in base alle sue preferenze, chiede al sistema di mostrare la lista delle richieste di disiscrizione, o la lista delle richieste di aggiornamento.
+<u>4</u> Il sistema mostra la lista di richieste d'amministrazione in base alla scelta dell'amministratore.]]></sequence>
+<postconditions><![CDATA[L'amministratore visualizza le richieste di disiscrizione o di aggiornamento ricevute dai fruitori, in base alla sua scelta.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

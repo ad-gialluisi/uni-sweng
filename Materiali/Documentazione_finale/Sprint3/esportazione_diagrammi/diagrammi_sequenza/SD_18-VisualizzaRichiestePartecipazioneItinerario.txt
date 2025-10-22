@@ -1,0 +1,45 @@
+@startuml
+
+!include skin.h
+
+actor Utente
+boundary vistaItinerario
+control controlloreItinerario
+control modelloItinerario
+participant ciceroneDatabase
+
+
+Utente -> vistaItinerario : disegna()
+activate vistaItinerario
+vistaItinerario -> vistaItinerario : schermataVisualizzaRichPartec()
+activate vistaItinerario
+vistaItinerario -> controlloreItinerario : richiediRichPartec(idItinerario, prf)
+activate controlloreItinerario
+
+note right of vistaItinerario : idItinerario lo si ottiene\ncome parametro GET
+note right of vistaItinerario : nomi dei metodi ridotti per\nquestioni di lettura
+
+controlloreItinerario -> modelloItinerario : getRichPartec(idItinerario, prf)
+activate modelloItinerario
+
+modelloItinerario -> ciceroneDatabase : query(datiItinerario)
+activate ciceroneDatabase
+modelloItinerario <<-- ciceroneDatabase : datiItinerario
+
+alt se "prf" significa "mostra solo partecipazioni accordate"
+    modelloItinerario -> ciceroneDatabase : query(richPartecAccordate)
+else else
+    modelloItinerario -> ciceroneDatabase : query(richPartecTutte)
+end
+activate modelloItinerario
+
+modelloItinerario <<-- ciceroneDatabase : richieste
+deactivate ciceroneDatabase
+controlloreItinerario <<-- modelloItinerario : richieste
+deactivate modelloItinerario
+vistaItinerario <<-- controlloreItinerario : richieste
+deactivate controlloreItinerario
+
+vistaItinerario -> vistaItinerario : mostraRichPartecItinerario(richieste)
+
+@enduml

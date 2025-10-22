@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[2]]></id>
+<name><![CDATA[EffettuaAccesso]]></name>
+<description><![CDATA[L'ospite effettua l'accesso al sistema.]]></description>
+<primary-actors><![CDATA[Ospite]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'utente registrato con cui l'ospite si autenticherà deve essere nello stato <i>attivato</i> o <i>recuperando</i>.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L’ospite inserisce i dati richiesti (nome utente e password).
+<u>2</u> L’ospite chiede al sistema di procedere con l’accesso.
+<u>3</u> Il sistema verifica l’esistenza del nome utente e la corrispondenza della password.
+<u>4</u> Il sistema accorda l'accesso.
+<u>5</u> Se l'utente registrato è nello stato <i>recuperando</i>:
+<u>5.1</u> Il sistema lo imposta ad <i>attivato</i>.
+<u>5.2</u> Il sistema rimuove il codice d'attivazione associato.]]></sequence>
+<postconditions><![CDATA[L'ospite effettuerà l'accesso al sistema.
+L'ospite potrà compiere tutte le operazioni consentite in base al tipo di utente registrato a cui risulta appartenere.]]></postconditions>
+<alternative-sequences><![CDATA[<i><u>ALT_2.1</u><i>]]></alternative-sequences>
+</CU>

@@ -1,0 +1,39 @@
+@startuml
+
+!include skin.h
+
+actor Cicerone
+boundary vistaItinerario
+control controlloreItinerario
+control modelloItinerario
+participant ciceroneDatabase
+
+Cicerone -> vistaItinerario : elabora(dati)
+activate vistaItinerario
+vistaItinerario -> controlloreItinerario : richiediDeclinoRichiestaPartecipazione(dati)
+activate controlloreItinerario
+controlloreItinerario -> controlloreItinerario : validaParametri(dati)
+activate controlloreItinerario
+
+alt I dati sono validi
+    controlloreItinerario -> modelloItinerario : declinaRichiestaPartecipazione(idRichiesta)
+    activate modelloItinerario
+    modelloItinerario -> ciceroneDatabase : manipola(rimozioneRichiestaPartecipazione)
+    note right of modelloItinerario : La richiesta di partecipazione\nprima della rimozione era nello\nstato "accordanda"
+    activate ciceroneDatabase
+    deactivate ciceroneDatabase
+    controlloreItinerario <<-- modelloItinerario : codiceStato
+    deactivate modelloItinerario
+else
+    controlloreItinerario -> controlloreItinerario : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreItinerario
+
+vistaItinerario -> controlloreItinerario : getStatoOperazione()
+vistaItinerario <<-- controlloreItinerario : statoOperazione
+
+opt L'operazione è andata a buon fine
+    vistaItinerario -> vistaItinerario : aggiornaVisualizzazioneRichieste()
+end
+
+@enduml

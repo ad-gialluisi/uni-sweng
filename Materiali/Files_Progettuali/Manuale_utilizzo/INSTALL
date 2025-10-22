@@ -1,0 +1,358 @@
+## Antonio Daniele Gialluisi, esame di Ingegneria del software
+
+### Indice
+
+- [Versione sistema](#version)
+- [Info sullo sviluppo](#info)
+- [Impostazione dell'ambiente d'esecuzione](#execenv_settings)
+- [Configurazione dell'ambiente d'esecuzione per il Sistema Cicerone](#execenv_config)
+- [Installazione del sistema Cicerone](#cicero_install)
+- [Modalità DEBUG](#debug_mode)
+- [Testare il sistema da Android](#android_testing)
+- [Utenti di test](#utenti_test)
+
+---
+
+<h3 id="version">Versione del sistema</h3>
+
+Questo manuale fa riferimento al sistema Cicerone v3.1 ERRATA CORRIGE 2
+
+---
+
+<h3 id="info">Info sullo sviluppo</h3>
+
+#### Ambiente di sviluppo e test
+- GNU/Linux Debian 10 con kernel vanilla 5.2.1, Eclipse IDE for PHP v4.12, Apache 2.4,
+Maria DB 10.3.17, Firefox 70
+- Android 5.1, Firefox 66 (solo test)
+
+#### Librerie esterne utilizzate
+- PHPMailer v6.1.1 per poter utilizzare server SMTP esterni per effettuare
+la spedizione di email.
+
+
+*NOTA*: Il sistema Cicerone necessita di Javascript e CSS abilitati per
+funzionare correttamente.
+
+---
+
+<h3 id="execenv_settings">Impostazione dell'ambiente d'esecuzione</h3>
+
+Occorre installare i seguenti software:
+
+- Webserver Apache v2.4 o superiore
+- DBMS MariaDB v10.3.18 o superiore (in alternativa MySQL Community Edition
+v8.0 o superiore)
+- PHP v7.3 o superiore
+    - Modulo PDO con driver MySQL
+    - Modulo SSL
+    - Modulo EXIF
+    - Modulo JSON
+
+È necessaria inoltre la disponibilità di un server SMTP esterno, come ad
+esempio un account gmail o similari.
+
+**Per gli utenti Windows**, è raccomandato (ma non obbligatorio) l'utilizzo
+di XAMPP v7.3.13 o superiore che installa automaticamente componenti
+equivalenti a quelli citati poc'anzi.
+
+Effettuate le installazioni, assicurarsi che siano abilitati nel file
+di configurazione di PHP per il webserver Apache, i moduli PDO, driver
+PDO per MySQL, OpenSSL, JSON ed EXIF.
+
+Per assicurarsene, aprire il/i file di configurazione e verificare che
+siano presenti le seguenti righe:
+
+Su GNU/Linux:
+
+```
+extension=pdo.so
+extension=pdo_mysql.so
+extension=openssl.so
+extension=mbstring.so 
+extension=exif.so
+extension=json.so
+```
+
+*NOTA*: Molte distribuzioni GNU/Linux aggiungono in automatico queste
+righe in altri file di configurazione (separati da quello principale) al
+momento delle installazioni dei singoli moduli, quindi non dovrebbe
+essere necessario questo passaggio.
+
+Su Windows:
+
+```
+extension=pdo.dll
+extension=pdo_mysql.dll
+extension=openssl.dll
+extension=mbstring.dll
+extension=exif.dll
+extension=json.dll
+```
+
+*NOTA*: Assicurarsi che eventuali antivirus non blocchino le connessioni
+SMTP in uscita, altrimenti l'invio di email non andrà a buon fine.
+
+Assicurarsi inoltre, che sia presente da qualche parte l'opzione:
+
+```
+file_uploads = On
+```
+
+altrimenti non sarà possibile effettuare l'upload delle immagini.
+
+*NOTA per chi usa MariaDB come DBMS*: è imperativo che il character-set
+del server sia "utf8mb4", questo è vero per le distro GNU/Linux Debian-based,
+non è sempre vero in altri casi.\
+Per impostare tale character set, è bene aggiungere le seguenti righe nel
+file di configurazione (my.cnf su GNU/Linux, my.ini su Windows):
+
+```
+[server]
+character-set-server = "utf8mb4"
+```
+
+per verificare che tutto sia andato bene, accedete al client a riga di comando
+e digitate "status", dovreste avere un risultato simile a questo:
+
+```
+..omesso..
+Server characterset:	utf8mb4
+Db     characterset:	utf8mb4
+Client characterset:	utf8
+Conn.  characterset:	utf8
+..omesso..
+```
+
+le righe importanti sono solo le prime due, non importa quali valori abbiano
+le ultime due.
+
+---
+
+<h3 id="execenv_config">Configurazione dell'ambiente d'esecuzione per il Sistema Cicerone</h3>
+
+Modificate il file "cicero.conf" fornito, esso ha questo aspetto:
+
+```
+<VirtualHost *:80>
+    ServerName <HOSTNAME_CICERONE>
+    ServerAdmin webmaster@localhost
+    DocumentRoot "<PERCORSO_ASSOLUTO_SISTEMA_CICERONE>"
+
+    <Directory "<PERCORSO_ASSOLUTO_SISTEMA_CICERONE>">
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+```
+
+- Sostituite \<PERCORSO_ASSOLUTO_SISTEMA_CICERONE\> con un percorso a vostra
+scelta dove risiederanno i file del sistema Cicerone.
+- Sostituite \<HOSTNAME_CICERONE\> con un hostname a vostra scelta (ad esempio:
+"cicero.com") da utilizzare per collegarsi.
+
+
+Il risultato della vostra modifica impostatelo come file di configurazione
+di Apache.\
+È importante notare che in alcune installazioni (ad esempio XAMPP) è
+necessario usare una direttiva "Include" all'interno del file di configurazione
+principale, altrimenti il file che andrete a piazzare, non verrà visto.\
+Ricordarsi inoltre, di rendere noto al sistema operativo della presenza dell'hostname
+modificando il file /etc/hosts (o C:/Windows/System32/driver/etc/hosts
+su Windows) ed aggiungendo una riga come questa:
+
+```
+127.0.0.1 <HOSTNAME_CICERONE>
+```
+
+Adesso, spostate i contenuti della cartella Cicerone in \<PERCORSO_ASSOLUTO_SISTEMA_CICERONE\>.\
+Se siete su GNU/Linux assicuratevi di spostare anche i file nascosti.
+
+*NOTA*: Se si intende testare il sistema anche da Android, si raccomanda
+in generale, di impostare \<HOSTNAME_CICERONE\> al valore "localhost"
+(senza virgolette).\
+Per vedere nel dettaglio come comportarsi, vedere la sezione [Testare il
+sistema da Android](#android_testing).
+
+Avviate dunque il servizio inerente il DBMS.
+
+---
+
+<h3 id="cicero_install">Installazione del sistema Cicerone</h3>
+
+#### Eseguire lo script di inizializzazione
+
+Adesso spostatevi mediante terminale (o prompt dei comandi su Windows),
+nella cartella \<PERCORSO_ASSOLUTO_SISTEMA_CICERONE\> (questa deve essere
+la vostra cartella di lavoro, o working directory se preferite).
+
+Aprite con un editor di testo il file "inizializza.sh" (o "inizializza.bat"
+se siete su Windows), verificate la correttezza delle informazioni del
+DBMS MariaDB o MySQL e/o rendete/rimuovete commento su alcune righe, se
+necessario, in base alle indicazioni del file.\
+Se ad esempio ci si trova un sistema con SELinux, abilitare/disabilitate
+le righe utili alla situazione affinchè non sussistano problemi.
+
+Finite le modifiche, eseguite lo script perchè vengano creati i dati
+persistenti e (su GNU/Linux) cambiati permessi e attributi dei file.\
+Su GNU/Linux lo script "inizializza.sh" necessita di essere eseguito come
+root o utilizzando "sudo".
+
+#### Impostare un server SMTP
+
+*NOTA*: Per scongiurare invii accidentali di mail si è provveduto ad impostare
+la modalità DEBUG così da avere più libertà di testare, anche con indirizzi
+di posta fasulli.\
+Se si intende utilizzare la funzionalità vera e propria, è necessario prima
+disabilitare la modalità DEBUG (vedere sezione "Modalità DEBUG").
+
+Andare e modificare il file utils/Spedizioniere.php per modificare i dettagli
+di collegamento al server SMTP.\
+Di default sono riportati i dettagli inerenti l'uso di un account gmail,
+tuttavia, username e password sono impostati come stringa vuota.\
+Cambiare opportunamente.
+
+*NOTA*: Gli utenti Google che usano l'autenticazione a due fattori devono
+creare una password per app sul proprio account ed utilizzare questa
+come password per lo Spedizioniere.
+
+Ora è possibile avviare anche il servizio inerente Apache ed iniziare ad
+utilizzare il sistema Cicerone.
+
+
+#### Ulteriori note per utenti GNU/Linux
+
+- Alcuni pacchetti per i moduli/estensioni di PHP sono nominati diversamente
+tra le diverse distribuzioni, ad esempio, per installare il modulo PDO
+per MySQL su Debian 10, è sufficiente installare il pacchetto php-pdo-mysql,
+ma su Fedora 29 sono necessari i pacchetti php-pdo_mysql, php-mysqlnd.\
+Innanzitutto suggerisco di abilitare, se non già abilitato, il mostrare
+gli errori direttamente sul browser cosicchè, possiate capire se ci sono
+problemi e di quale natura.\
+Se qualcosa non funziona come dovrebbe, ad esempio, alcune funzioni
+non sono definite o questioni simili, assicurarsi che si siano installati
+i pacchetti in base alla distribuzione in utilizzo.\
+Per mostrare gli errori su schermo, assicurarsi che il file di configurazione
+principale di PHP abbia, da qualche parte, le seguenti righe:
+
+    ```
+    display_errors = On
+    display_startup_errors = On
+    ```
+
+- Su Fedora viene installato di default un programma Firewall.\
+Tale programma considera come non fidati i servizi locali di http e https,
+è necessario andare nella propria configurazione ed impostarli come fidati
+perchè si possa usare il sistema Cicerone.
+- Lo script "inizializza.sh" viene eseguito:
+    - Per cambiare i permessi e contesti a file e cartelle
+    - Per impostare i dati persistenti e l'utente interno del Database.
+
+
+---
+
+<h3 id="debug_mode">Modalità DEBUG</h3>
+
+Se per un qualche motivo si intende utilizzare la modalità DEBUG del sistema,
+è necessario modificare i seguenti file:
+
+- utils/Spedizioniere.php, se si intende disabilitare l'invio di email e
+sostituirlo con la scrittura delle stesse su un file.\
+Cercare la proprietà "DEBUG" ed impostarla a "true".\
+Le email verranno scritte (sovrascrivendosi di volta in volta) nella
+cartella debug/rwdir.
+
+- vista/Vista.php, se si intende fare debug del sistema Cicerone e di tutte
+le sue funzionalità.\
+Cercare la proprietà "DEBUG" ed impostarla a "true".\
+Quando la modalità DEBUG è abilitata, utilizzare CTRL-D sul browser per
+vedere il menù DebugSettings, utile per fare test arbitrari.\
+*NOTA*: tra le capacità, c'è l'abilitazione della modalità debug di XDebug
+tramite parametri GET "XDEBUG_SESSION_START" e "KEY".\
+Se necessario, andare in debug/DebugSettings.php ed impostare dei diversi
+valori a questi parametri, poichè sono impostati quelli di default
+dell'IDE Eclipse.
+
+- vista/Layout.php, se si intende effettuare un dump (cioè uno scaricamento
+totale e grezzo) delle schermate generate dal sistema Cicerone su un file,
+oltre che mostrarle sul browser.\
+Cercare la proprietà "DEBUG" ed impostarla a "true".\
+Le schermate verranno salvate (sovrascrivendosi di volta in volta) nella
+cartella debug/rwdir.
+
+Di default, questo pacchetto viene distribuito con tutti i valori ad
+eccezione di Layout::DEBUG (il dump delle schermate), impostati su "true".\
+In particolare, si è scelto di abilitare Spedizioniere.php::DEBUG in maniera
+tale da non far partire l'invio di email, a meno che non si voglia ESPLICITAMENTE
+testare tale funzionalità.\
+Può essere utile ad esempio, se non si ha a disposizione un server SMTP
+e si vuole testare comunque, oppure, se non si intende utilizzare un proprio
+account solo per questo scopo.
+
+---
+
+<h3 id="android_testing">Testare il sistema da Android</h3>
+
+È possibile usare due metodi:
+
+1. Collegarsi da Android ad una rete locale per accedere al webserver
+del PC (solitamente richiede il port forwarding di un router).
+2. Mediante Android Debug Bridge (adb), con l'uso del reverse port forwarding
+(ovvero la mappatura di una porta del PC ad una del dispositivo portatile
+bersaglio).
+
+È da notare come anche in Android sia necessario aggiungere \<HOSTNAME_CICERONE\>
+al file /etc/hosts affinchè ci si possa collegare al sistema Cicerone.\
+Se non si dispone di un dispositivo con i permessi di root però, questo
+non è possibile, perchè /etc/hosts è in sola lettura.\
+Se questa è la situazione, raccomando l'uso dell'hostname "localhost",
+dato che di solito è quello di default.\
+Per andare sul sicuro, usate un'App "Emulatore di Terminale" (o mediante
+Android Debug Bridge shell) e digitate:
+
+```
+cat /etc/hosts
+```
+
+per vedere dunque, quali sono gli hostname a cui è associato 127.0.0.1 e
+impostate \<HOSTNAME_CICERONE\> di conseguenza.\
+Se al contrario avete un dispositivo con permessi di root, semplicemente
+aggiungete \<HOSTNAME_CICERONE\> al file /etc/hosts come già indicato nella
+sezione [Configurazione dell'ambiente d'esecuzione per il Sistema
+Cicerone](#execenv_config).
+
+Essendo più semplice, spiegherò come fare il reverse port forwarding, però
+per farlo occorre installare Android Debug Bridge, ed in seguito, abilitare
+le opzioni da sviluppatore e il Debug USB sul dispositivo.\
+Assumerò che sia tutto installato e che il dispositivo sia INDIVIDUABILE.
+
+
+Collegate il dispositivo al PC e digitate da terminale il seguente comando:
+
+```
+adb reverse tcp:<PORTA> tcp:80
+```
+
+\<PORTA\> può essere una porta qualunque del dispositivo.
+
+Ora, usando il dispositivo, aprire un browser ed inserire nella barra
+degli indirizzi:
+
+```
+http://<HOSTNAME_CICERONE>:<PORTA>
+```
+
+---
+
+<h3 id="utenti_test">Utenti di test</h3>
+
+È necessario sapere che sono stati forniti degli utenti di test per usare
+IMMEDIATAMENTE il sistema.\
+Ovviamente è possibile creare nuovi utenti facilmente, tuttavia, se si vuol
+fare un utilizzo di prova veloce, è possibile.\
+
+- nomeutente: antoniodaniele, password: antoniodaniele (Amministratore)
+- nomeutente: caligola, password: caligola (Cicerone)
+- nomeutente: giuliocesare, password: giuliocesare (QuasiCicerone)
+- nomeutente: neroneclaudio, password: neroneclaudio (Globetrotter)

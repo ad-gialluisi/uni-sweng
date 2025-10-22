@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[1]]></id>
+<name><![CDATA[RegistrazioneUtente]]></name>
+<description><![CDATA[Il sistema provvede alla creazione di un nuovo utente registrato e del relativo profilo associato.]]></description>
+<primary-actors><![CDATA[Ospite]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L’ospite si trova nella pagina di registrazione.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L’ospite inserisce i dati richiesti (email, nome utente e password).
+<u>2</u> L’ospite chiede al sistema di procedere con la registrazione del nuovo utente.
+<u>3</u> Il sistema provvede alla registrazione del nuovo utente.]]></sequence>
+<postconditions><![CDATA[L'utente registrato sarà di tipo Globetrotter e sarà nello stato <i>registrato</i>.
+L’ospite troverà nella casella di posta dell'indirizzo email inserito, un'email che conterrà un codice d'attivazione (questo servirà per attivare l'utente registrato).]]></postconditions>
+<alternative-sequences><![CDATA[<i><u>ALT_1.1</u></i>]]></alternative-sequences>
+</CU>

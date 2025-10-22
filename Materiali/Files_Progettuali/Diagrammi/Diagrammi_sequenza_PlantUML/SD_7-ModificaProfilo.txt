@@ -1,0 +1,57 @@
+@startuml
+
+!include skin.h
+
+actor UtenteRegistrato
+boundary vistaProfilo
+control controlloreProfilo
+control modelloProfilo
+participant ciceroneDatabase
+
+note over UtenteRegistrato : ovvero uno tra,\nGlobetrotter, QuasiCicerone,\nCicerone, Amministratore
+
+UtenteRegistrato -> vistaProfilo : elabora(dati)
+activate vistaProfilo
+vistaProfilo -> controlloreProfilo : richiediModificaProfilo(dati)
+activate controlloreProfilo
+controlloreProfilo -> controlloreProfilo : validaParametri(dati)
+activate controlloreProfilo
+
+alt I dati sono validi
+    controlloreProfilo -> modelloProfilo : modificaProfilo(idUtente, altriDatiUtente)
+    activate modelloProfilo
+
+    modelloProfilo -> ciceroneDatabase : query(datiUtenti)
+    activate ciceroneDatabase
+    modelloProfilo <<-- ciceroneDatabase : datiUtenti
+    deactivate ciceroneDatabase
+
+    alt Si è scelto di NON modificare la password
+        modelloProfilo -> ciceroneDatabase : manipola(modificaInformazioniProfilo)
+    else Si è scelto di modificare la password E\nla vecchia password corrisponde E\nla nuova è diversa dalla vecchia
+        modelloProfilo -> ciceroneDatabase : manipola(modificaInformazioniProfilo)
+    end
+    
+    controlloreProfilo <<-- modelloProfilo : codiceStato
+    deactivate modelloProfilo
+    alt La modifica è andata a buon fine
+        controlloreProfilo -> controlloreProfilo : set(codiceStato, OPERAZIONE_RIUSCITA)
+    else
+        controlloreProfilo -> controlloreProfilo : set(codiceStato, OPERAZIONE_FALLITA)
+    end
+else
+    controlloreProfilo -> controlloreProfilo : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreProfilo
+
+controlloreProfilo -> controlloreProfilo : setStatoOperazione(codiceStato)
+controlloreProfilo -> controlloreProfilo : setMessaggio(codiceStato)
+
+vistaProfilo -> controlloreProfilo : getStatoOperazione()
+vistaProfilo <<-- controlloreProfilo : statoOperazione
+deactivate controlloreProfilo
+
+vistaProfilo -> vistaProfilo : salvaMessaggioPerSchermata(paginaProfilo)
+vistaProfilo -> vistaProfilo : mandaA(paginaProfilo)
+
+@enduml

@@ -1,0 +1,139 @@
+/* Copyright (C) 2020 Antonio Daniele Gialluisi */
+
+/* This file is part of "Piattaforma Cicerone" */
+
+/* This program is free software: you can redistribute it and/or modify */
+/* it under the terms of the GNU General Public License as published by */
+/* the Free Software Foundation, either version 3 of the License, or */
+/* (at your option) any later version. */
+
+/* This program is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the */
+/* GNU General Public License for more details. */
+
+/* You should have received a copy of the GNU General Public License */
+/* along with this program. If not, see <https://www.gnu.org/licenses/>. */
+
+
+#sidebar {
+	background-color: #67df66;
+	border: 0.1rem solid black;
+	padding: 1.5rem 1rem 1rem 1rem;
+	top: 0;      /* La barra laterale viene posta (partendo dal suo angolo in alto a sinistra
+		         in cima della finestra del browser */
+	right: -40%; /* La barra laterale viene posta alla destra della finestra del browser
+		         (difatto "scomparendo") */
+	width: 0;    /* La larghezza viene impostata a 0, durante la transizione aumenterà */
+	height: 100%;
+	position: fixed;    /* La barra laterale viene impostata in base alla finestra del browser */
+	z-index: 1;         /* Consente la sovrapposizione della barra laterale, in maniera tale
+	                     da risultare sopra a tutti gli altri elrementi */
+  	overflow-x: hidden; /* Se un elemento orizzontale è troppo lungo, non mostrare le barre di scorrimento */
+  	transition: 0.5s;   /* Questo parametro consente di creare l'animazione della barra laterale. */
+  	border-radius: 1rem;
+  	box-shadow: 0.2rem 0.2rem 0.5rem black;
+  	text-align: center;
+  	font-size: 1.1rem;
+}
+
+
+.sidebar-close-button-container {
+	text-align: right;
+	padding: 0rem 0rem 0.5rem 0.5rem;
+}
+
+
+.sidebar-close-button {
+	cursor: pointer;
+	vertical-align: middle;
+	border: 0.1rem solid black;
+	width: 1.2rem;
+	height: 1.2rem;
+}
+
+
+.user-img-sidebar {
+	border: 0.1rem solid black;
+	width: 4rem;
+	height: 4rem;
+}
+
+
+.profile-link {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+
+/*
+ * Altre dimensioni a seguire
+ */
+@media screen and (min-width: 42rem) and (max-width: 60rem) {
+	#sidebar {
+		border: 0.1rem solid black;
+  		box-shadow: 0.2rem 0.2rem 0.5rem black;
+  		font-size: 1rem;
+	}
+
+	.user-img-sidebar {
+		width: 3rem;
+		height: 3rem;
+		border: 0.05rem solid black;
+	}
+
+	.sidebar-close-button {
+		border: 0.05rem solid black;
+	}
+}
+
+
+
+@media screen and (min-width: 20rem) and (max-width: 42rem) {	
+	#sidebar {
+		border: 0.1rem solid black;
+		padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+  		border-radius: 0.5rem;
+  		box-shadow: 0.2rem 0.2rem 0.5rem black;
+  		font-size: 0.9rem;
+	}
+
+	.user-img-sidebar {
+		width: 2rem;
+		height: 2rem;
+		border: 0.03rem solid black;
+	}
+
+	.sidebar-close-button-container {
+		padding: 0rem 0rem 0.3rem 0.3rem;
+	}
+	
+	.sidebar-close-button {
+		border: 0.03rem solid black;
+	}
+}
+
+
+@media screen and (max-width: 20rem) {
+	#sidebar {
+		border: 0.03rem solid black;
+		padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+  		border-radius: 0.2rem;
+		box-shadow: 0.1rem 0.1rem 0.3rem black;
+  		font-size: 0.7rem;
+	}
+
+	.user-img-sidebar {
+		width: 1rem;
+		height: 1rem;
+		border: 0.01rem solid black;
+	}
+
+	.sidebar-close-button {
+	  	border: 0.01rem solid black;
+	}
+
+	.sidebar-close-button-container {
+		padding: 0rem 0rem 0.1rem 0.1rem;
+	}
+}

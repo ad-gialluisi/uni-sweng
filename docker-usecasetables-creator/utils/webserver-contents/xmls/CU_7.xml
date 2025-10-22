@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[7]]></id>
+<name><![CDATA[ModificaProfilo]]></name>
+<description><![CDATA[Un utente registrato modifica le informazioni associate al proprio profilo.]]></description>
+<primary-actors><![CDATA[Globetrotter, QuasiCicerone, Cicerone, Amministratore]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Bisogna aver effettuato l'accesso.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente registrato chiede al sistema di poter modificare il proprio profilo.
+<u>2</u> Il sistema permette la modifica del profilo.
+<u>3</u> L'utente effettua le modifiche.
+<u>4</u> L'utente chiede al sistema di salvare i dati.
+<u>5</u> Il sistema effettua il salvataggio dei dati.]]></sequence>
+<postconditions><![CDATA[Le informazioni di profilo saranno aggiornate in base alle modifiche apportate.]]></postconditions>
+<alternative-sequences><![CDATA[<i><u>ALT_7.1</u></i>]]></alternative-sequences>
+</CU>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[22]]></id>
+<name><![CDATA[RicercaItinerari]]></name>
+<description><![CDATA[Un utente effettua la ricerca di itinerari.]]></description>
+<primary-actors><![CDATA[Utente]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente inserisce i parametri di ricerca.
+<u>2</u> L'utente chiede al sistema di effettuare la ricerca.
+<u>3</u> Il sistema mostra i risultati della ricerca.]]></sequence>
+<postconditions><![CDATA[Il sistema mostra i risultati della ricerca in base ai parametri e/o filtri impostati.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

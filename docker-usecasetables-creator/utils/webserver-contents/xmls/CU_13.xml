@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[13]]></id>
+<name><![CDATA[TrasformaInQuasiCicerone]]></name>
+<description><![CDATA[Un amministratore provvede alla trasformazione di un Globetrotter in QuasiCicerone.]]></description>
+<primary-actors><![CDATA[Amministratore]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Dev'essere già stata inviata ALMENO una richiesta di aggiornamento.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'amministratore chiede al sistema di visualizzare una particolare richiesta di aggiornamento.
+<u>2</u> Il sistema mostra i dettagli associati alla richiesta di aggiornamento.
+<u>3</u> Se l'amministratore accorda la richiesta di aggiornamento:
+<u>3.1</u> Il sistema provvederà ad impostare come accordata tale richiesta.
+<u>3.2</u> Il sistema cambierà il tipo d'utente del mittente della richiesta da Globetrotter a QuasiCicerone.
+<u>3.3</u> Il sistema notificherà al mittente della richiesta ciò che è accaduto.]]></sequence>
+<postconditions><![CDATA[L'amministratore potrà continuare a gestire le richieste d'amministrazione.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

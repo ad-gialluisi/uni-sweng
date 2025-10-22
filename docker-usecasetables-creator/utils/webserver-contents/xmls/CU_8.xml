@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[8]]></id>
+<name><![CDATA[ModificaAnagrafica]]></name>
+<description><![CDATA[Un Cicerone modifica le informazioni anagrafiche associate al proprio profilo.]]></description>
+<primary-actors><![CDATA[Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Bisogna aver effettuato l'accesso.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il Cicerone chiede al sistema di poter modificare le informazioni anagrafiche.
+<u>2</u> Il sistema permette la modifica dell'anagrafica.
+<u>3</u> Il Cicerone effettua le modifiche.
+<u>4</u> Il Cicerone chiede al sistema di salvare i dati.
+<u>5</u> Il sistema effettua il salvataggio dei dati.]]></sequence>
+<postconditions><![CDATA[Le informazioni sull'anagrafica saranno aggiornate in base alle modifiche apportate.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

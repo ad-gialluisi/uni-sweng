@@ -1,0 +1,80 @@
+TUTTE LE DIPENDENZE
+
+A -> I
+B -> K
+B -> D
+C -> J
+C -> D
+C ->> A
+C ->> E
+D -> L
+D ->> H
+D ->> F
+D ->> E
+D ->> A
+E -> M
+F -> N
+G -> D
+G -> O
+H -> P
+
+
+FASE 1:
+
+D, C ->> A -> I
+B -> K, D
+C -> J, D
+D -> L
+C, D ->> E -> M
+D ->> F -> N
+G -> D, O
+D ->> H -> P
+
+
+
+FASE 2:
+
+C ->> A
+D ->> A
+C ->> E
+D ->> E
+D ->> H
+D ->> F
+
+
+
+TOTALE
+
+D, C ->> A -> I
+B -> K, D
+C -> J, D
+D -> L
+C, D ->> E -> M
+D ->> F -> N
+G -> D, O
+D ->> H -> P
+C ->> A
+D ->> A
+C ->> E
+D ->> E
+D ->> H
+D ->> F
+
+
+IN QUINTA FORMA NORMALE
+A -> I
+B -> K, D
+C -> J, D
+D -> L
+E -> M
+F -> N
+G -> D, O
+H -> P
+C ->> A
+D ->> A
+C ->> E
+D ->> E
+D ->> H
+D ->> F
+
+

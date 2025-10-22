@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ALT>
+<id><![CDATA[24.1]]></id>
+<name><![CDATA[VisualizzaItinerariFruitore:VisualizzaTutti]]></name>
+<description><![CDATA[Visualizza la lista di itinerari di un Cicerone.]]></description>
+<primary-actors><![CDATA[Utente]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'utente di cui si intende visualizzare il profilo è un Cicerone.]]></preconditions>
+<execution-step><![CDATA[Al posto di <i><u>CU_24</u></i>]]></execution-step>
+<sequence><![CDATA[<u>1</u> L'utente in base alle sue preferenze, chiede al sistema di mostrare gli itinerari a cui il Cicerone ha partecipato, o quelli che ha organizzato.
+<u>2</u> Il sistema mostra la lista di itinerari in base alla scelta dell'utente.]]></sequence>
+<postconditions><![CDATA[L'utente potrà vedere gli itinerari associati al Cicerone, siano essi quelli a cui ha partecipato, o quelli che ha creato.]]></postconditions>
+</ALT>

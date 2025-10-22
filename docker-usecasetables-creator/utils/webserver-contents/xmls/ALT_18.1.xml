@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ALT>
+<id><![CDATA[18.1]]></id>
+<name><![CDATA[VisualizzaRichiestePartecipazioneItinerario:VisualizzaTutte]]></name>
+<description><![CDATA[Un Cicerone visualizza le richieste di partecipazione ad un proprio itinerario.]]></description>
+<primary-actors><![CDATA[Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'utente ha effettuato l'accesso
+E
+l'utente è il Cicerone organizzatore dell'itinerario scelto.]]></preconditions>
+<execution-step><![CDATA[Dopo il passo <u>1</u> di <i><u>CU_18</u></i>]]></execution-step>
+<sequence><![CDATA[<u>1</u> L'utente in base alle sue preferenze, chiede al sistema di visualizzare le richieste di partecipazione, in base al loro stato (<i>accordanda</i>, <i>accordata</i> o <i>annullanda</i>).
+<u>2</u> Il sistema mostra le richieste di partecipazione in base alla scelta dell'utente.]]></sequence>
+<postconditions><![CDATA[L'utente (Cicerone organizzatore) visualizza le richieste di partecipazione associate ad un suo itinerario, che sono nello stato scelto da lui.]]></postconditions>
+</ALT>

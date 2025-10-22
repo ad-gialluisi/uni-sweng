@@ -1,0 +1,75 @@
+ID | Schermata
+:--:|:--:
+ACCESSO                                       | Accesso
+CREAZIONE_ITINERARIO                          | Crea Itinerario
+CREAZIONE_FEEDBACK_ORGANIZZATORE              | Creazione feedback (come fruitore)
+CREAZIONE_FEEDBACK_PARTECIPANTE               | Creazione feedback (come organizzatore verso i partecipanti)
+CREAZIONE_RICHIESTA_DISISCRIZIONE             | Creazione richiesta disiscrizione (come fruitore)
+CREAZIONE_RICHIESTA_AGGIORNAMENTO             | Creazione richiesta aggiornamento (come Globetrotter)
+ELEMENTI_FEEDBACK                             | Contenitore dei seguenti
+ELEMENTO_FEEDBACK_PARTECIPANTE                | Elemento feedback di tipo partecipante (rilasciato da organizzatore a fruitore partecipante)
+ELEMENTO_FEEDBACK_ORGANIZZATORE               | Elemento feedback di tipo organizzatore (rilasciato da fruitore partecipante a organizzatore)
+ELEMENTO_FEEDBACK_LISTA_PROFILI               | Elemento che contiene due o tre foto, contenenti dei partecipanti, serve in "CREAZIONE_FEEDBACK_PARTECIPANTE" per mostrare il popup che consentirà l'aggiunta dei profili al feedback.
+ELEMENTI_ITINERARIO                           | Contenitore dei seguenti
+ELEMENTO_ITINERARIO_OSPITE_AMMIN              | Elemento itinerario presente in una lista (visto da ospite e amministratore)
+ELEMENTO_ITINERARIO_FRUITORE                  | Elemento itinerario presente in una lista (visto da fruitore) *
+ELEMENTO_ITINERARIO_ORGANIZZATORE             | Elemento itinerario presente in una lista (visto da organizzatore)
+ELEMENTI_PROFILO                              | Contenitore dei seguenti
+ELEMENTO_PROFILO_OSPITE_FRUITORE_AMMIN        | Elemento profilo presente in una lista (visto da ospite, fruitore e amministratore)
+ELEMENTO_PROFILO_ORGANIZZATORE_PARTECIPAZIONE | Elemento profilo presente in una lista, qualora sia stata richiesta la partecipazione (visto da organizzatore) **
+ELEMENTO_PROFILO_ORGANIZZATORE_ANNULLAMENTO   | Elemento profilo presente in una lista, qualora sia stata richiesto l'annullamento della partecipazione (visto da organizzatore)
+ELEMENTO_PROFILO_POPUP_FEEDBACK_LISTA_PROFILI | Elemento profilo presente in "POPUP_FEEDBACK_LISTA_PROFILI"
+ELEMENTO_RICHIESTE_AMMINISTRAZIONE            | Contenitore dei seguenti
+ELEMENTO_RICHIESTA_DISISCRIZIONE              | Elemento richiesta disiscrizione (solo amministratore)
+ELEMENTO_RICHIESTA_AGGIORNAMENTO              | Elemento richiesta aggiornamento (solo amministratore)
+HOME                                          | HOME
+IMPOSTAZIONI_AMMIN                            | Impostazioni di notifica (come amministratore)
+IMPOSTAZIONI_GC                               | Impostazioni di notifica (come fruitore)
+LETTURA_RICHIESTA_AGGIORNAMENTO               | Lettura richiesta aggiornamento (come amministratore)
+LETTURA_RICHIESTA_DISISCRIZIONE               | Lettura richiesta disiscrizione (come amministratore)
+LISTA_ITINERARI_CICERONE                      | Lista di itinerari a cui ho partecipato/ho organizzato (come Cicerone, include solo quelli chiusi[???])
+LISTA_ITINERARI_G_QC                          | Lista di itinerari a cui ho partecipato (come globetrotter, include solo quelli chiusi[???])
+LISTA_FEEDBACK_CICERONE                       | Lista di feedback come partecipante/come organizzatore (Cicerone)
+LISTA_FEEDBACK_G_QC                           | Lista di feedback come partecipante (Globetrotter, QuasiCicerone)
+LISTA_NOTIFICHE                               | Lista di notifiche, dalla più vecchia alla più nuova (Cercare di consentire il link diretto ad un elemento, mediante #ref)
+LISTA_PARTECIPAZIONI                          | Lista di partecipanti, suddivise in accordate/partecipazione/annullamenti (Cercare di consentire il link diretto ad un elemento di una lista, partendo da una notifica (mediante #ref))
+LISTA_RICHIESTE_AMMINISTRAZIONE               | Lista richieste aggiornamento e disiscrizione (Cercare di consentire il link diretto ad un elemento di una lista, partendo da una notifica (mediante #ref))
+MENU_NOTIFICHE                                | Menù notifiche (per tutti tranne gli ospiti)
+MESSAGGIO_POPUP                               | Messaggio popup che viene visualizzato per chiedere conferma di qualcosa
+MODIFICA_ANAGRAFICA_CICERONE                  | Modifica anagrafica Cicerone
+MODIFICA_ITINERARIO                           | Modifica Itinerario
+MODIFICA_PROFILO                              | Modifica profilo (tutti)
+POPUP_FEEDBACK_LISTA_PROFILI                  | Popup che mostra la lista di partecipanti aggiungibili a quelli che riceveranno il feedback, serve in "CREAZIONE_FEEDBACK_PARTECIPANTE"
+RECUPERO                                      | Recupero Accesso
+REGISTRAZIONE                                 | Registrazione
+RESET_PASSWORD                                | Password reset
+RICERCA                                       | Ricerca (come ospite e amministratore)
+RICERCA_CICERONE                              | Ricerca (cicerone)
+RICERCA_G_QC                                  | Ricerca (globetrotter, quasicicerone)
+SIDEBAR_AMMIN                                 | Menù laterale (amministratore)
+SIDEBAR_CICERONE                              | Menù laterale (Cicerone)
+SIDEBAR_G_QC                                  | Menù laterale (Globetrotter, QuasiCicerone)
+SIDEBAR_OSPITE                                | Menù laterale (ospite)
+VISUALIZZAZIONE_FEEDBACK_DI_ORGANIZZATORE     | Visualizza feedback partecipante di un organizzatore (per tutti)
+VISUALIZZAZIONE_FEEDBACK_DI_PARTECIPANTE      | Visualizza feedback organizzatore di un fruitore (per tutti)
+VISUALIZZAZIONE_ITINERARIO                    | Visualizzazione Itinerario (come ospite e amministratore)
+VISUALIZZAZIONE_ITINERARIO_FRUITORE           | Visualizzazione Itinerario (come fruitore) *
+VISUALIZZAZIONE_ITINERARIO_ORGANIZZATORE      | Visualizzazione Itinerario (come organizzatore)
+VISUALIZZAZIONE_PROFILO_AMMIN                 | Visualizzazione profilo Amministratore (SOLO da proprietario)
+VISUALIZZAZIONE_PROFILO_CICERONE              | Visualizzazione profilo Cicerone (da non proprietario, qualunque tipo di utente)
+VISUALIZZAZIONE_PROFILO_CICERONE_PROPR        | Visualizzazione profilo Cicerone (da proprietario)
+VISUALIZZAZIONE_PROFILO_G_QC                  | Visualizzazione profilo Globetrotter, QuasiCicerone (da non proprietario, qualunque tipo di utente)
+VISUALIZZAZIONE_PROFILO_G_QC_PROPR            | Visualizzazione profilo Globetrotter, QuasiCicerone (da proprietario) ***
+
+
+
+  *: L'apparizione dei pulsanti "richiedi partecipazione" e "annulla
+ partecipazione" è mutualmente esclusiva.
+ **: L'apparizione dei link "accorda partecipazione" e "declina
+partecipazione" è mutualmente esclusiva.
+***: L'apparizione del pulsante "Invia richiesta d'aggiornamento" c'è solo
+finchè trattasi di Globetrotter.
+Comparirà, solo dopo che è stata accordata dall'amministratore, il pulsante
+"conferma transizione a Cicerone", e in questo caso, si tratterà di utente
+QuasiCicerone.
+

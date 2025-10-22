@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[19]]></id>
+<name><![CDATA[AccordaRichiestaPartecipazione]]></name>
+<description><![CDATA[Accorda una richiesta di partecipazione inviata da un fruitore rispetto ad un proprio itinerario.]]></description>
+<primary-actors><![CDATA[Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Un fruitore deve aver inviato una richiesta di partecipazione rispetto ad un particolare itinerario
+E
+lo stato di tale richiesta dev'essere <i>accordanda</i>.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il Cicerone chiede al sistema di accordare una richiesta di partecipazione in particolare.
+<u>2</u> Il sistema provvede ad accordare la richiesta.]]></sequence>
+<postconditions><![CDATA[Il Cicerone avendo accordato una richiesta di partecipazione, consentirà al fruitore di risultare effettivo partecipante all'itinerario a cui la richiesta fa riferimento.
+Lo stato della richiesta sarà modificato in <i>accordata</i>.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

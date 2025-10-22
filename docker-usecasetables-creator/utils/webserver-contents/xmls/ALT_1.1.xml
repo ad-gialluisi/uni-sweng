@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ALT>
+<id><![CDATA[1.1]]></id>
+<name><![CDATA[RegistrazioneUtente:DatiInvalidi]]></name>
+<description><![CDATA[Il sistema avvisa l'ospite dell'invalidità dei dati.]]></description>
+<primary-actors><![CDATA[Ospite]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'ospite deve aver inserito dei dati non validi (ad esempio, email malformata)
+OPPURE
+L’ospite deve aver inserito un nome utente già utilizzato
+OPPURE
+L'ospite deve aver inserito un'email già utilizzata.]]></preconditions>
+<execution-step><![CDATA[Dopo il passo <u>2</u> di <i><u>CU_1</u></i>]]></execution-step>
+<sequence><![CDATA[<u>1</u> Il sistema avvisa l’ospite che i dati inseriti non sono validi con un messaggio.]]></sequence>
+<postconditions><![CDATA[Il sistema NON effettuerà la creazione del nuovo utente registrato.]]></postconditions>
+</ALT>

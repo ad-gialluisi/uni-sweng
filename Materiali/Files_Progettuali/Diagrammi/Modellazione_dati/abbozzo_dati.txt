@@ -1,0 +1,130 @@
+dichiara TipoUtente enum { Globetrotter, Cicerone, Amministratore };
+dichiara Utente {
+    id,
+    email text,
+    nome_utente text,
+    password text,
+    avatar img,
+    descrizione text,
+    tipo TipoUtente,
+
+    vincoli:
+        (tipo, nome_utente) unico
+};
+
+
+dichiara AnagraficaUtente {
+    id,
+    id_utente Utente.id,
+    nome text,
+    cognome text,
+    data_nascita data,
+    luogo_nascita text,
+    residenza text,
+    telefono text,
+    codice_fiscale text,
+    attivato boolean,
+
+    vincoli:
+        Per Utente.id = id_utente valga Utente.tipo = 'Cicerone'
+};
+
+dichiara Valuta {
+    valuta text,
+    centesimale boolean,
+    chiave primaria(valuta)
+}
+dichiara StatoItinerario enum { OPENED, ITINERED, CONCLUDED, CLOSED };
+dichiara Itinerario {
+    id,
+    data data,
+    luogo text,
+    descrizione text,
+    popolarità int,
+    cicerone Utente.id,
+    stato StatoItinerario,
+    valuta Valuta.valuta,
+    compenso integer
+
+    vincoli:
+        Per Utente.id = cicerone valga Utente.tipo = 'Cicerone'
+};
+dichiara AssociazioneItinerarioPartecipante {
+    id,
+    id_itinerario Itinerario.id,
+    partecipante Utente.id,
+    accordato boolean
+    
+    vincoli:
+        Per Utente.id != cicerone organizzatore.id
+        (id_itinerario, partecipante) unico
+};
+
+
+dichiara FeedbackTipo enum { Fruitore, Organizzatore };
+dichiara Feedback {
+    id,
+    tipo FeedbackTipo,
+    descrizione text,
+    voto int,
+    id_utente Utente.id,
+    id_itinerario Itinerario.id
+
+    vincoli:
+        (tipo, id_utente, id_itinerario) unico
+};
+/*
+ESEMPIO:
+si ha id_utente = 74 per un partecipante e 78 per un organizzatore
+
+0, Fruitore, "pincopallo", 5, 74, 8
+1, Organizzatore, "pincopallo", 5, 74, 8
+
+Il primo, è un feedback nei confronti dell'organizzatore dell'itinerario (id_utente 74 è colui che lo ha scritto)
+Il secondo è un feedback nei confronti del partecipante (id_utente 74 è colui che lo ha ricevuto)
+*/
+
+
+dichiara RichiestaDisiscrizone {
+    id,
+    id_utente Utente.id,
+    descrizione text,
+};
+
+dichiara RichiestaAggiornamento {
+    id,
+    id_anagrafica AnagraficaUtente.id,
+    accordato boolean
+};
+
+
+
+dichiara Notifica {
+    id,
+    utente_dest Utente.id,
+    descrizione text,
+    link text,
+    letta boolean,
+};
+dichiara PreferenzeNotifica {
+    id,
+    id_utente Utente.id,
+    partecipazione_itinerario bool,
+    annullamento_itinerario bool,
+    declino_itinerario bool,
+    ricezione_feedback bool,
+    via_mail bool
+};
+
+
+/*
+TIPI DI NOFICHE:
+<utente Cicerone organizzatore> ti ha accordato la partecipazione all'itinerario #? (link all'itinerario)
+<utente Cicerone organizzatore> ti ha accordato l'annullamento della partecipazione all'itinerario #? (link all'itinerario)
+<utente Globetrotter/utente Cicerone non organizzatore> ha richiesto la partecipazione all'itinerario #? (link all'itinerario diretto al profilo che vuole partcipare!?)
+<utente Globetrotter/utente Cicerone non organizzatore> ha richiesto l'annullamento della partecipazione all'itinerario #? (link all'itinerario diretto al profilo che vuole partcipare!?)
+<utente Cicerone organizzatore> ti ha lasciato un feedback - (link alla visualizzazione del feedback)
+<utente Globetrotter/utente Cicerone non organizzatore> ti ha lasciato un feedback
+Congratulazioni, sei diventato Cicerone!
+Congratulazioni, sei stato disiscritto (SOLO VIA MAIL)
+*/

@@ -1,0 +1,57 @@
+@startuml
+
+!include skin.h
+
+actor UtenteRegistrato
+boundary vistaUtente
+control controlloreUtente
+control modelloUtente
+participant ciceroneDatabase
+
+note over UtenteRegistrato : ovvero uno tra,\nGlobetrotter, QuasiCicerone,\nCicerone, Amministratore
+
+UtenteRegistrato -> vistaUtente : elabora(dati)
+activate vistaUtente
+vistaUtente -> controlloreUtente : richiediModificaProfilo(dati)
+activate controlloreUtente
+controlloreUtente -> controlloreUtente : validaParametri(dati)
+activate controlloreUtente
+
+alt I dati sono validi
+    controlloreUtente -> modelloUtente : modificaProfilo(idUtente, altriDatiUtente)
+    activate modelloUtente
+
+    modelloUtente -> ciceroneDatabase : query(datiUtenti)
+    activate ciceroneDatabase
+    modelloUtente <<-- ciceroneDatabase : datiUtenti
+    deactivate ciceroneDatabase
+
+    alt Si è scelto di NON modificare la password
+        modelloUtente -> ciceroneDatabase : manipola(modificaInformazioniProfilo)
+    else Si è scelto di modificare la password E\nla vecchia password corrisponde E\nla nuova è diversa dalla vecchia
+        modelloUtente -> ciceroneDatabase : manipola(modificaInformazioniProfilo)
+    end
+    
+    controlloreUtente <<-- modelloUtente : codiceStato
+    deactivate modelloUtente
+    alt La modifica è andata a buon fine
+        controlloreUtente -> controlloreUtente : set(codiceStato, OPERAZIONE_RIUSCITA)
+    else
+        controlloreUtente -> controlloreUtente : set(codiceStato, OPERAZIONE_FALLITA)
+    end
+else
+    controlloreUtente -> controlloreUtente : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreUtente
+
+controlloreUtente -> controlloreUtente : setStatoOperazione(codiceStato)
+controlloreUtente -> controlloreUtente : setMessaggio(codiceStato)
+
+vistaUtente -> controlloreUtente : getStatoOperazione()
+vistaUtente <<-- controlloreUtente : statoOperazione
+deactivate controlloreUtente
+
+vistaUtente -> vistaUtente : salvaMessaggioPerSchermata(paginaProfilo)
+vistaUtente -> vistaUtente : mandaA(paginaProfilo)
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+
+!include skin.h
+
+actor Utente
+boundary vistaProfilo
+control controlloreProfilo
+control modelloProfilo
+
+Utente -> vistaProfilo : disegna()
+activate vistaProfilo
+vistaProfilo -> vistaProfilo : schermataProfilo()
+activate vistaProfilo
+vistaProfilo -> controlloreProfilo : richiediUtente(id)
+activate controlloreProfilo
+
+note right of vistaProfilo : id lo si ottiene\ncome parametro GET
+
+controlloreProfilo -> modelloProfilo : getUtente(id)
+activate modelloProfilo
+controlloreProfilo <<-- modelloProfilo : utente
+vistaProfilo <<-- controlloreProfilo : utente
+
+opt L'utente esiste
+    vistaProfilo -> vistaProfilo : mostraProfilo(utente)
+
+    opt L'utente è un Cicerone
+        vistaProfilo -> controlloreProfilo : richiediAnagrafica(idUtente)
+        controlloreProfilo -> modelloProfilo : getAnagrafica(idUtente)
+        controlloreProfilo <<-- modelloProfilo : anagrafica
+        vistaProfilo <<-- controlloreProfilo : anagrafica
+        vistaProfilo -> vistaProfilo : mostraAnagrafica(anagrafica)
+    end
+    deactivate vistaProfilo
+end
+
+@enduml

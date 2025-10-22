@@ -1,0 +1,38 @@
+@startuml
+
+!include skin.h
+
+actor Cicerone
+boundary vistaProfilo
+control controlloreProfilo
+control modelloProfilo
+
+Cicerone -> vistaProfilo : elabora(dati)
+activate vistaProfilo
+vistaProfilo -> controlloreProfilo : richiediModificaAnagrafica(dati)
+activate controlloreProfilo
+controlloreProfilo -> controlloreProfilo : validaParametri(dati)
+activate controlloreProfilo
+
+alt I dati sono validi
+    controlloreProfilo -> modelloProfilo : modificaAnagrafica(idUtente, residenza, telefono)
+    activate modelloProfilo
+    
+    controlloreProfilo <<-- modelloProfilo : codiceStato
+    deactivate modelloProfilo
+else
+    controlloreProfilo -> controlloreProfilo : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreProfilo
+
+controlloreProfilo -> controlloreProfilo : setStatoOperazione(codiceStato)
+controlloreProfilo -> controlloreProfilo : setMessaggio(codiceStato)
+
+vistaProfilo -> controlloreProfilo : getStatoOperazione()
+vistaProfilo <<-- controlloreProfilo : statoOperazione
+deactivate controlloreProfilo
+
+vistaProfilo -> vistaProfilo : salvaMessaggioPerSchermata(paginaProfilo)
+vistaProfilo -> vistaProfilo : mandaA(paginaProfilo)
+
+@enduml

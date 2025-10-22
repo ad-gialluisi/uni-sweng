@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[3]]></id>
+<name><![CDATA[RecuperaAccesso]]></name>
+<description><![CDATA[L'ospite chiede al sistema di effettuare il recupero dell'accesso.]]></description>
+<primary-actors><![CDATA[Ospite]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'ospite non ricorda le credenziali per l'accesso.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'ospite inserisce il suo indirizzo email.
+<u>2</u> Se l'indirizzo email inserito appartiene ad uno degli utenti registrati:
+<u>2.1</u> Il sistema imposta lo stato dell'utente registrato a <i>recuperando</i>.
+<u>2.2</u> Il sistema invia un'email all'indirizzo specificato con un codice d'attivazione utile per riattivare l'utente.]]></sequence>
+<postconditions><![CDATA[L'ospite riceve un email con il codice d'attivazione utile per effettuare la reimpostazione della password.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

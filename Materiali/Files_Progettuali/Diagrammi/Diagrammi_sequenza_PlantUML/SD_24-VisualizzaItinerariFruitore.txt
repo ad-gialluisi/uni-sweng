@@ -1,0 +1,39 @@
+@startuml
+
+!include skin.h
+
+actor Utente
+boundary vistaItinerario
+control controlloreItinerario
+control modelloItinerario
+participant ciceroneDatabase
+
+Utente -> vistaItinerario : disegna()
+activate vistaItinerario
+vistaItinerario -> vistaItinerario : schermataItinerariFruitore()
+activate vistaItinerario
+vistaItinerario -> controlloreItinerario : richiediItinerariFruitore(idFruitore)
+activate controlloreItinerario
+
+note right of vistaItinerario : idFruitore lo si ottiene\ncome parametro GET
+
+controlloreItinerario -> modelloItinerario : getItinerariFruitore(idItinerario)
+activate modelloItinerario
+
+modelloItinerario -> ciceroneDatabase : query(datiFruitore)
+activate ciceroneDatabase
+modelloItinerario <<-- ciceroneDatabase : fruitore
+
+alt Il fruitore risulta essere un Cicerone
+    modelloItinerario -> ciceroneDatabase : query(itinerariOrganizzatiEPartecipatiDalFruitore)
+else
+    modelloItinerario -> ciceroneDatabase : query(itinerariPartecipatiDalFruitore)
+end
+
+modelloItinerario <<-- ciceroneDatabase : itinerari
+controlloreItinerario <<-- modelloItinerario : itinerari
+vistaItinerario <<-- controlloreItinerario : itinerari
+
+vistaItinerario -> vistaItinerario : mostraItinerari(itinerari)
+
+@enduml

@@ -1,0 +1,47 @@
+/* Copyright (C) 2020 Antonio Daniele Gialluisi */
+
+/* This file is part of "Piattaforma Cicerone" */
+
+/* This program is free software: you can redistribute it and/or modify */
+/* it under the terms of the GNU General Public License as published by */
+/* the Free Software Foundation, either version 3 of the License, or */
+/* (at your option) any later version. */
+
+/* This program is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the */
+/* GNU General Public License for more details. */
+
+/* You should have received a copy of the GNU General Public License */
+/* along with this program. If not, see <https://www.gnu.org/licenses/>. */
+
+
+form input[type="submit"] {
+	margin-top: 2%;
+	font-size: 1rem;
+}
+
+form input[type=date], input[type=text] {
+	font-size: 1rem;
+}
+
+textarea {
+	width: 50%;
+	font-size: 1rem;
+	resize: none;
+	max-width: 50%;
+	height: 5rem;
+}
+
+form label {
+	font-size: 1.2rem;
+}
+
+select {
+	font-size: 1rem;
+}
+
+
+.requests-paragraph {
+	text-align: left;
+}

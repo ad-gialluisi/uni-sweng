@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[5]]></id>
+<name><![CDATA[AttivaUtente]]></name>
+<description><![CDATA[L'ospite chiede al sistema di effettuare l'attivazione dell'utente registrato con cui intende autenticarsi.]]></description>
+<primary-actors><![CDATA[Ospite]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'ospite possiede il codice d'attivazione che identifica il suo utente registrato
+E
+lo stato dell'utente registrato risulta essere <i>inserito</i> oppure <i>recuperando</i>.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'ospite fornisce al sistema il codice d'attivazione.
+<u>2</u> Il sistema provvede all'attivazione dell'utente registrato.]]></sequence>
+<postconditions><![CDATA[Lo stato dell'utente registrato verrà impostato ad <i>attivato</i>.]]></postconditions>
+<alternative-sequences><![CDATA[<i><u>ALT_5.1</u></i>, <i><u>ALT_5.2</u></i>]]></alternative-sequences>
+</CU>

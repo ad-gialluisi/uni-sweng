@@ -1,0 +1,66 @@
+<!-- Copyright (C) 2020 Antonio Daniele Gialluisi -->
+
+<!-- This file is part of "Piattaforma Cicerone" -->
+
+<!-- This program is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- This program is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with this program. If not, see <https://www.gnu.org/licenses/>. -->
+
+
+<div id="debug_menu" data-debug-header-set="\@debug-header-location-status">
+	<h4>Debug</h4>
+
+	KeyCode corrente: <span id="key_code"></span><br>
+
+	<button onclick="debugSettings.toggleDebugHeaderLocationStatus()"><span id="status_header">\@debug-header-location-status-message</span> DEBUG header("location: &lt;URL&gt;");</button>
+	<button onclick="debugSettings.toggleDebugURLs()"><span id="status_url">Abilita</span> DEBUG URLs</button>
+
+	<p>
+	XDEBUG_SESSION_START=ECLIPSE_DBGP&amp;KEY=157270718956123
+	</p>
+
+	<h4>Navigazione arbitraria</h4>
+
+	<p>
+		Scegli pagina
+		<select id="page_list">
+			<option value="scegli_pagina">...scegli...</option>
+		</select>
+		<br>
+		<label>DEBUG <input id="debug_checkbox" type="checkbox" name="debug_url" value=""/></label>
+	</p>
+
+	<p>
+		Parametri:<br>
+		<textarea id="params"></textarea>
+	</p>
+
+
+	<p>
+		Metodo:<br>
+		<label>GET <input id="debug_radio_get" type="radio" name="method" value="get" checked="checked"/></label><br>
+		<label>POST <input id="debug_radio_post" type="radio" name="method" value="post"/></label>
+	</p>
+
+
+	<p>
+		Pagine "preset"
+		<select id="preset_list" onchange="debugSettings.cambiaPreset()">
+			<option value="scegli_preset">...scegli...</option>
+		</select>
+	</p>
+
+	<form id="debug_form" method="get" action="javascript:;">
+	</form>
+	
+	<button onclick="debugSettings.submit()">Vai</button>
+</div>

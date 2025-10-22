@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ALT>
+<id><![CDATA[7.1]]></id>
+<name><![CDATA[ModificaProfilo:ModificaPasswordFallita]]></name>
+<description><![CDATA[Un utente registrato modifica, tra le informazioni associate al proprio profilo, la password, tuttavia la corrispondenza tra password fallisce.]]></description>
+<primary-actors><![CDATA[Globetrotter, QuasiCicerone, Cicerone, Amministratore]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'utente registrato ha richiesto la modifica della password del proprio profilo, tuttavia, la vecchia password non corrisponde oppure la verifica della password fallisce.]]></preconditions>
+<execution-step><![CDATA[Dopo il passo <u>4</u> di <i><u>CU_7</u></i>]]></execution-step>
+<sequence><![CDATA[<u>1</u> Il sistema avvisa l'utente di quel che è successo con un messaggio.]]></sequence>
+<postconditions><![CDATA[L'utente registrato può continuare a modificare il proprio profilo.]]></postconditions>
+</ALT>

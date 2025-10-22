@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[12]]></id>
+<name><![CDATA[InviaRichiestaAggiornamento]]></name>
+<description><![CDATA[Un Globetrotter invia una richiesta di aggiornamento, affinchè gli amministratori possano farlo diventare un Cicerone.]]></description>
+<primary-actors><![CDATA[Globetrotter]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Il Globetrotter deve aver effettuato l'accesso.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il Globetrotter chiede al sistema la creazione di una richiesta di aggiornamento.
+<u>2</u> Il sistema permette la creazione di questo tipo di richiesta.
+<u>3</u> Il Globetrotter inserisce i dati necessari.
+<u>4</u> Il Globetrotter chiede al sistema l'invio della richiesta.
+<u>5</u> Il sistema effettua l'invio della richiesta di aggiornamento.]]></sequence>
+<postconditions><![CDATA[Viene creata una nuova richiesta di aggiornamento.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

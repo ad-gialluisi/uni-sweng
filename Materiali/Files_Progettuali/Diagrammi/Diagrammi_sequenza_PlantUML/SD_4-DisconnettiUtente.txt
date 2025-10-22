@@ -1,0 +1,26 @@
+@startuml
+
+!include skin.h
+
+actor UtenteRegistrato
+boundary vistaAccesso
+control controlloreAccesso
+
+note over UtenteRegistrato : ovvero uno tra,\nGlobetrotter, QuasiCicerone,\nCicerone, Amministratore
+
+UtenteRegistrato -> vistaAccesso : elabora(dati)
+activate vistaAccesso
+vistaAccesso -> controlloreAccesso : richiediDisconnessione()
+activate controlloreAccesso
+controlloreAccesso -> controlloreAccesso : pulisciSessione()
+controlloreAccesso -> controlloreAccesso : setStatoOperazione(NO_SEGNALAZIONE)
+controlloreAccesso -> controlloreAccesso : setMessaggio(NO_SEGNALAZIONE)
+
+vistaAccesso -> controlloreAccesso : getStatoOperazione()
+vistaAccesso <<-- controlloreAccesso : statoOperazione
+deactivate controlloreAccesso
+
+vistaAccesso -> vistaAccesso : salvaMessaggioPerSchermata(paginaHOME)
+vistaAccesso -> vistaAccesso : mandaA(paginaHOME)
+
+@enduml

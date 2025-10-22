@@ -1,0 +1,38 @@
+@startuml
+
+!include skin.h
+
+actor Cicerone
+boundary vistaUtente
+control controlloreUtente
+control modelloUtente
+
+Cicerone -> vistaUtente : elabora(dati)
+activate vistaUtente
+vistaUtente -> controlloreUtente : richiediModificaAnagrafica(dati)
+activate controlloreUtente
+controlloreUtente -> controlloreUtente : validaParametri(dati)
+activate controlloreUtente
+
+alt I dati sono validi
+    controlloreUtente -> modelloUtente : modificaAnagrafica(idUtente, residenza, telefono)
+    activate modelloUtente
+    
+    controlloreUtente <<-- modelloUtente : codiceStato
+    deactivate modelloUtente
+else
+    controlloreUtente -> controlloreUtente : set(codiceStato, OPERAZIONE_FALLITA)
+end
+deactivate controlloreUtente
+
+controlloreUtente -> controlloreUtente : setStatoOperazione(codiceStato)
+controlloreUtente -> controlloreUtente : setMessaggio(codiceStato)
+
+vistaUtente -> controlloreUtente : getStatoOperazione()
+vistaUtente <<-- controlloreUtente : statoOperazione
+deactivate controlloreUtente
+
+vistaUtente -> vistaUtente : salvaMessaggioPerSchermata(paginaProfilo)
+vistaUtente -> vistaUtente : mandaA(paginaProfilo)
+
+@enduml

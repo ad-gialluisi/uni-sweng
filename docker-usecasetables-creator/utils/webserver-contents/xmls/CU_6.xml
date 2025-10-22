@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[6]]></id>
+<name><![CDATA[VisualizzaProfilo]]></name>
+<description><![CDATA[L'utente visualizza il profilo di un utente registrato (oppure il proprio).]]></description>
+<primary-actors><![CDATA[Utente]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente chiede al sistema di visualizzare il profilo di un particolare utente registrato.
+<u>2</u> Il sistema mostra il profilo associato all'utente registrato scelto dall'utente.
+<u>3</u> Se l'utente è un Cicerone che ha chiesto la visualizzazione del proprio profilo:
+<u>3.1</u> Verrà mostrata anche l'anagrafica ad esso associata.]]></sequence>
+<postconditions><![CDATA[All'utente verrà mostrato il profilo di un utente registrato (oppure il proprio).]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

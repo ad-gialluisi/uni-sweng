@@ -1,0 +1,28 @@
+@startuml
+
+!include skin.h
+
+actor Utente
+boundary vistaItinerario
+control controlloreItinerario
+control modelloItinerario
+
+Utente -> vistaItinerario : disegna()
+activate vistaItinerario
+vistaItinerario -> vistaItinerario : schermataVisualizzazioneItinerario()
+activate vistaItinerario
+vistaItinerario -> controlloreItinerario : richiediItinerario(id)
+activate controlloreItinerario
+
+note right of vistaItinerario : id lo si ottiene\ncome parametro GET
+
+controlloreItinerario -> modelloItinerario : getItinerario(id)
+activate modelloItinerario
+controlloreItinerario <<-- modelloItinerario : itinerario
+vistaItinerario <<-- controlloreItinerario : itinerario
+
+opt L'itinerario esiste
+    vistaItinerario -> vistaItinerario : mostraItinerario(itinerario)
+end
+
+@enduml

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[30]]></id>
+<name><![CDATA[VisualizzaFeedbacksFruitore]]></name>
+<description><![CDATA[Visualizza la lista dei feedback organizzatore-partecipante, associata ad un fruitore.]]></description>
+<primary-actors><![CDATA[Utente]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente chiede al sistema di mostrare la lista dei feedback organizzatore-partecipante associata al fruitore.
+<u>2</u> Il sistema mostra la lista dei feedback organizzatore-partecipante.]]></sequence>
+<postconditions><![CDATA[L'utente visualizza la lista dei feedback organizzatore-partecipante associati al particolare fruitore.]]></postconditions>
+<alternative-sequences><![CDATA[<u><i>ALT_30.1</i></u>]]></alternative-sequences>
+</CU>

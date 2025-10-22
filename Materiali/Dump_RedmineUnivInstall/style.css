@@ -1,0 +1,11 @@
+.hidden {
+	display: none;
+}
+
+.closed {
+	text-decoration: line-through;
+}
+
+div div {
+	margin: 20px;
+}

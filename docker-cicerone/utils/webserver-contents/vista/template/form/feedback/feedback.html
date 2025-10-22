@@ -1,0 +1,129 @@
+<!-- Copyright (C) 2020 Antonio Daniele Gialluisi -->
+
+<!-- This file is part of "Piattaforma Cicerone" -->
+
+<!-- This program is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- This program is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with this program. If not, see <https://www.gnu.org/licenses/>. -->
+
+
+\@schermata-rilascio-feedback-PO{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+    <h3 class="screen-title">Rilascia un feedback a <a href="\@form-scr-profilo">\@nome-utente</a></h3>
+    <p>organizzatore dell'itinerario <a href="\@form-scr-itinerario">\@nome-itinerario</a> a cui hai partecipato</p>
+	<form method="post" action="\@form-req-rilascia-feedback-po">
+		<label>Descrizione</label><br>
+    	<textarea name="\@campo-descrizione"></textarea><br>
+    	<label>Voto</label><br>
+    	<input type="number" name="\@campo-voto" min="0" step="1" max="5" value="0"><br>
+    	<input type="hidden" name="\@campo-id-itinerario" value="\@id-itinerario">
+		<input type="submit" class="generic-button" value="Rilascia feedback"/>
+	</form>
+</div>
+\@}
+
+\@schermata-rilascio-feedback-OP{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+    <h3 class="screen-title">Rilascia un feedback ai partecipanti dell'itinerario <a href="\@form-scr-itinerario">\@nome-itinerario</a> organizzato da te</h3>
+
+		<button class="generic-button" onclick="\@azione-mostra-partecipanti">Scegli i partecipanti</button>
+	
+	<form method="post" action="\@form-req-rilascia-feedback-po">
+		<p><label>Descrizione</label>: <br>
+   		<textarea name="\@campo-descrizione"></textarea></p>
+   		<label>Voto</label><br>
+   		<input type="number" name="\@campo-voto" min="0" step="1" max="5" value="0"><br>
+    	<input type="hidden" id="\@campo-id-partecipante" name="\@campo-id-partecipante" value="">
+    	<input type="hidden" name="\@campo-id-itinerario" value="\@id-itinerario">
+		<input type="submit" class="generic-button" value="Rilascia feedback"/>
+	</form>
+</div>
+\@}
+
+\@schermata-visualizzazione-feedback{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+	\@feedback-trovato{
+		\@is-po{
+    		<h3 class="screen-title">Feedback rilasciato da <a href="\@form-scr-profilo-partecipante">\@nome-utente-partecipante</a></h3>
+    		<p>rispetto all'itinerario <a href="\@form-scr-itinerario">\@nome-itinerario</a>,<br>nei confronti di <a href="\@form-scr-profilo-organizzatore">\@nome-utente-organizzatore</a>, organizzatore dello stesso.</p>
+    	\@}
+    	\@is-op{
+    		<h3 class="screen-title">Feedback rilasciato da <a href="\@form-scr-profilo-organizzatore">\@nome-utente-organizzatore</a></h3>
+    		<p>rispetto al suo itinerario <a href="\@form-scr-itinerario">\@nome-itinerario</a>,<br>nei confronti di <a href="\@form-scr-profilo-partecipante">\@nome-utente-partecipante</a>, partecipante a tale itinerario.</p>
+    	\@}
+
+    	<p><strong>Voto</strong>: \@voto</p>
+
+    	<p><strong>Descrizione</strong>:<br>
+    		\@descrizione</p>
+
+	
+		<div class="info-side">
+    		<a class="generic-button block" href="\@form-scr-lista-feedback-organizzatore">Visualizza tutti i feedbacks dell'organizzatore</a>
+		</div>
+		<div class="button-side">
+	    	<a class="generic-button block" href="\@form-scr-lista-feedback-partecipante">Visualizza tutti i feedbacks del partecipante</a>
+   		</div>
+    \@}
+
+    \@feedback-non-trovato{
+		<h3 class="screen-title">Feedback non trovato</h3>
+		<p>Il feedback specificato non esiste</p>
+    \@}
+</div>
+\@}
+
+\@schermata-visualizzazione-feedbacks-fruitore{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+	\@fruitore-trovato{
+    <h3 class="screen-title">I feedbacks di <a href="\@form-scr-profilo">\@nome-fruitore</a></h3>
+
+    	\@is-cicerone{
+    		<p>
+				<select class="block" onchange="mostraMenuTramiteSelect(this)">
+					<option selected="selected" value="feedback-po">Feedback come organizzatore</option>
+					<option value="feedback-op">Feedback come partecipante</option>
+				</select>
+			</p>
+
+			<div class="list-holder">
+				<div id="feedback-po">
+					\@feedback-come-organizzatore
+				</div>
+
+				<div id="feedback-op" class="hidden">
+					\@feedback-come-partecipante
+				</div>
+			</div>
+    	\@}
+
+    	\@is-partecipante{
+			<div class="list-holder">
+				\@feedback-come-partecipante
+			</div>
+    	\@}
+    \@}
+
+    \@fruitore-non-trovato{
+    	<h3 class="screen-title">L'utente specificato non è stato trovato.</h3>
+		<p>L'utente tanto desiderato non esiste.</p>
+    \@}
+</div>
+\@}

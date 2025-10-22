@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ALT>
+<id><![CDATA[30.1]]></id>
+<name><![CDATA[VisualizzaFeedbacksFruitore:VisualizzaTutti]]></name>
+<description><![CDATA[Visualizza la lista dei feedback associati ad un Cicerone.]]></description>
+<primary-actors><![CDATA[Utente]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Il particolare fruitore di cui si vuole vedere la lista dei feedback associati è un Cicerone.]]></preconditions>
+<execution-step><![CDATA[Al posto di <u><i>CU_30</i></u>]]></execution-step>
+<sequence><![CDATA[<u>1</u> L'utente in base alle sue preferenze, chiede al sistema di mostrare la lista dei feedback organizzatore-partecipante o i feedback partecipante-organizzatore associati al Cicerone.
+<u>2</u> Il sistema mostra la lista di feedback in base alla scelta dell'utente.]]></sequence>
+<postconditions><![CDATA[L'utente visualizza la lista dei feedback di un certo tipo (in base alla sua scelta), appartenenti al particolare Cicerone.]]></postconditions>
+</ALT>

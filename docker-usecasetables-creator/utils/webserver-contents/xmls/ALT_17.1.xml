@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ALT>
+<id><![CDATA[17.1]]></id>
+<name><![CDATA[RimuoviItinerario:RimozioneNonConfermata]]></name>
+<description><![CDATA[Il Cicerone decide di non rimuovere l'itinerario.]]></description>
+<primary-actors><![CDATA[Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Il Cicerone, dopo che il sistema gli chiede conferma della rimozione dell'itinerario, deve rifiutare.]]></preconditions>
+<execution-step><![CDATA[Dopo il passo <u>2</u> di <i><u>CU_17</u></i>]]></execution-step>
+<sequence><![CDATA[<u>1</u> Il sistema non fa alcunchè.]]></sequence>
+<postconditions><![CDATA[L'itinerario scelto non viene rimosso.]]></postconditions>
+</ALT>

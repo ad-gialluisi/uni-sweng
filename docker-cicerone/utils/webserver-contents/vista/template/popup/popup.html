@@ -1,0 +1,34 @@
+<!-- Copyright (C) 2020 Antonio Daniele Gialluisi -->
+
+<!-- This file is part of "Piattaforma Cicerone" -->
+
+<!-- This program is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- This program is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with this program. If not, see <https://www.gnu.org/licenses/>. -->
+
+
+<div class="popup">
+	<div id="\@popup-nome" data-closure-type="\@tipo-chiusura" class="popup-content">
+		<div class="layer1">
+			<div class="layer2">
+				\@is-chiusura-interattiva{
+					<div class="popup-close-button-container">
+        				<img class="popup-close-button" src="vista/immagini/chiusura.png" alt="Pulsante chiusura popup" onclick="new Popup('\@popup-nome').nascondi()"/>
+			        </div>
+		        \@}
+				<div>
+					\@popup-contenuto
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

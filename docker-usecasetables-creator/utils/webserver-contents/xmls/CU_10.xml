@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[10]]></id>
+<name><![CDATA[DisiscriviFruitore]]></name>
+<description><![CDATA[Un amministratore provvede alla disiscrizione richiesta da un fruitore.]]></description>
+<primary-actors><![CDATA[Amministratore]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Dev'essere già stata inviata ALMENO una richiesta di disiscrizione.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'amministratore chiede al sistema di visualizzare una particolare richiesta di disiscrizione.
+<u>2</u> Il sistema mostra i dettagli associati alla richiesta di disiscrizione.
+<u>3</u> Se l'amministratore accorda la richiesta di disiscrizione:
+<u>3.1</u> Il sistema provvederà alla disiscrizione del fruitore che l'ha richiesta.
+<u>3.2</u> Il sistema invierà una notifica via email di ciò che è accaduto.]]></sequence>
+<postconditions><![CDATA[Se è stato scelto di disiscrivere il fruitore, il fruitore verrà disiscritto dal sistema, in caso contrario non ci saranno conseguenze.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

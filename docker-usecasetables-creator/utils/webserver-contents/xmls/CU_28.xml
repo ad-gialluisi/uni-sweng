@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[28]]></id>
+<name><![CDATA[RimuoviNotifica]]></name>
+<description><![CDATA[Rimuovere una notifica ricevuta da un utente registrato.]]></description>
+<primary-actors><![CDATA[Globetrotter, QuasiCicerone, Cicerone, Amministratore]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'utente registrato deve aver effettuato l'accesso.]]></preconditions>
+<sequence><![CDATA[<u>1</u> L'utente registrato chiede al sistema di rimuovere una notifica in particolare.
+<u>2</u> Il sistema effettua la rimozione della notifica.]]></sequence>
+<postconditions><![CDATA[Il sistema rimuove la particolare notifica.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

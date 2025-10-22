@@ -1,0 +1,160 @@
+<!-- Copyright (C) 2020 Antonio Daniele Gialluisi -->
+
+<!-- This file is part of "Piattaforma Cicerone" -->
+
+<!-- This program is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- This program is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with this program. If not, see <https://www.gnu.org/licenses/>. -->
+
+
+\@schermata-profilo{
+<h4>\@messaggistica</h4>
+
+<div class="centered-text-screen">
+	\@utente-trovato{
+    	<h3 class="screen-title">Profilo di \@nomeutente</h3>
+
+
+		<div class="info-side">
+    		<img class="user-img" src="\@percorso-immagine" alt="immagine dell'utente"/><br>
+
+			<p>\@tipo<br>
+    			\@me-stesso{
+	    			\@email
+    			\@}
+    		</p>
+
+	    	<p>\@descrizione</p>
+
+			\@is-cicerone-amministratore{
+				<div id="anagrafica">
+    				Nome: \@nome<br>
+    				Cognome: \@cognome<br>
+    				Data di nascita: \@data-nascita<br>
+    				Luogo di nascita: \@luogo-nascita<br>
+    				Residenza: \@residenza<br>
+    				Telefono: \@telefono<br>
+    				Codice Fiscale: \@codice-fiscale
+				</div>
+			\@}
+		</div>
+
+		<!-- Qui ho utilizzato un form con molti pulsanti, invece di banali anchor (tag <a>)
+		perchè oltre al raggiungimento di schermate, mediante questa sezione, è possibile effettuare
+		delle richieste.
+		La forma delle chiavi segnaposto è:
+
+		\\@form-scr-nome -> se si tratta di una schermata (screen)
+		\\@form-req-nome -> se si tratta di una richiesta (request)
+
+		Questa nomenclatura vale anche per le altre schermate che seguono.
+		 -->
+
+		<p class="button-side">
+			\@is-globetrotter-quasicicerone{
+				<a class="generic-button block" href="\@form-scr-itinerari-partecipante">Itinerari a cui partecipo/ho partecipato</a>
+				<a class="generic-button block" href="\@form-scr-feedback">Feedback</a>
+				\@me-stesso{
+    				<a class="generic-button block" href="\@form-scr-modprofilo">Modifica</a>
+    				\@pulsante-richiesta-disiscrizione{
+						<a class="generic-button block" href="\@form-req-disiscrizione">Richiesta di disiscrizione</a>
+					\@}
+					\@is-globetrotter{
+						\@pulsante-richiesta-aggiornamento{
+							<a class="generic-button block" href="\@form-scr-update">Richiesta di aggiornamento</a>
+						\@}
+					\@}
+					\@is-quasicicerone{
+					    <a class="generic-button block" href="\@form-req-transcicerone">Conferma transizione Cicerone</a>
+					\@}
+				\@}
+			\@}
+
+			\@is-cicerone{
+		    	<a class="generic-button block" href="\@form-scr-itinerari-partecipante">Itinerari a cui partecipo/ho partecipato</a>
+    			<a class="generic-button block" href="\@form-scr-itinerari-organizzatore">I miei itinerari</a>
+				<a class="generic-button block" href="\@form-scr-feedback">Feedback</a>
+				\@me-stesso{
+					<a class="generic-button block" href="\@form-scr-modprofilo">Modifica profilo</a>
+					<a class="generic-button block" href="\@form-scr-modanagrafica">Modifica anagrafica</a>
+					\@pulsante-richiesta-disiscrizione{
+						<a class="generic-button block" href="\@form-req-disiscrizione">Richiesta di disiscrizione</a>
+					\@}
+				\@}
+			\@}
+
+			\@is-amministratore{
+				<a class="generic-button block" href="\@form-scr-modprofilo">Modifica</a>
+			\@}
+		</p>
+
+		\@utente-in-disiscrizione{
+			In attesa per la disiscrizione...
+		\@}
+
+		\@utente-in-aggiornamento{
+			In attesa per l'aggiornamento a Cicerone...
+		\@}
+	\@}
+	\@utente-non-trovato{
+		<h3 class="screen-title">L'utente specificato non è stato trovato.</h3>
+		<p>L'utente tanto desiderato non esiste.</p>
+	\@}
+</div>
+\@}
+
+\@schermata-modprofilo{
+<h4>\@messaggistica</h4>
+
+<h4 id="messaggi"></h4>
+
+<div class="centered-text-screen">
+	<h3 class="screen-title">Modifica delle informazioni di profilo</h3>
+
+    <form action="\@form-req-modprofilo" method="post" enctype="multipart/form-data">
+        <p>
+	        <label>Immagine di profilo<br>
+    	    <img class="user-img" id="anteprima" src="\@percorso-immagine" alt="immagine dell'utente"/><br>
+        	<input id="\@id-input-file" type="file" name="\@campo-immagine-upload" onchange="\@azione-mostra-anteprima" accept="image/*"></label>
+			<input type="button" onclick="\@azione-conferma-reset-anteprima" value="Immagine di default">
+        	<input id="\@id-input-restore" type="hidden" name="\@campo-ripristina-immagine" value="false">
+        </p>
+
+        <label>Email</label><br>
+        <input type="email" name="\@campo-email" value="\@email-contenuto"><br/>
+        <label>Descrizione</label><br>
+        <textarea name="\@campo-descrizione">\@descrizione-contenuto</textarea><br/>
+        <label>Vecchia password</label><br>
+        <input type="password" name="\@campo-vecchia-password" value=""><br/>
+        <label>Nuova password</label><br>
+        <input type="password" name="\@campo-nuova-password" value=""><br/>
+        <label>Conferma password</label><br>
+        <input type="password" name="\@campo-conferma-nuova-password" value=""><br>
+        <input type="submit" class="generic-button" value="Modifica completata"/>
+    </form>
+</div>
+\@}
+
+\@schermata-modanagrafica{
+<h4>\@messaggistica</h4>
+<div class="centered-text-screen">
+	<h3 class="screen-title">Modifica delle informazioni di anagrafica</h3>
+
+	<form action="\@form-req-modanagrafica" method="post">
+		<label>Luogo di residenza</label><br>
+		<input type="text" name="\@campo-residenza" value="\@residenza-contenuto"/><br>
+		<label>Telefono</label><br>
+		<input type="text" name="\@campo-telefono" value="\@telefono-contenuto"/><br>
+		<input class="generic-button" type="submit" value="Modifica completata"/>
+	</form>
+</div>
+\@}

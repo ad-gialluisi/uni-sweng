@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[21]]></id>
+<name><![CDATA[DeclinaRichiestaPartecipazione]]></name>
+<description><![CDATA[Declina una richiesta di partecipazione inviata da un fruitore, rispetto ad un itinerario.]]></description>
+<primary-actors><![CDATA[Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Un fruitore deve aver inviato una richiesta di partecipazione rispetto ad un particolare itinerario
+E
+lo stato di tale richiesta dev'essere <i>accordanda</i>.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il Cicerone chiede al sistema di declinare una richiesta di partecipazione in particolare.
+<u>2</u> Il sistema rimuove la richiesta di partecipazione.]]></sequence>
+<postconditions><![CDATA[Il Cicerone avendo declinato una richiesta di partecipazione, precluderà il fruitore che ha inviato la richiesta dal divenire partecipante effettivo all'itinerario.
+La richiesta di partecipazione verrà rimossa.]]></postconditions>
+<alternative-sequences><![CDATA[]]></alternative-sequences>
+</CU>

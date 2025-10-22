@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CU>
+<id><![CDATA[17]]></id>
+<name><![CDATA[RimuoviItinerario]]></name>
+<description><![CDATA[Il Cicerone effettua la rimozione di un proprio itinerario.]]></description>
+<primary-actors><![CDATA[Cicerone]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[Il Cicerone deve aver effettuato l'accesso.]]></preconditions>
+<sequence><![CDATA[<u>1</u> Il Cicerone chiede al sistema la rimozione di un particolare itinerario.
+<u>2</u> Il sistema chiede al Cicerone la conferma della sua intenzione di rimuovere l'itinerario.
+<u>3</u> Il sistema rimuove l'itinerario.]]></sequence>
+<postconditions><![CDATA[Il sistema rimuove l'itinerario scelto dal Cicerone.]]></postconditions>
+<alternative-sequences><![CDATA[<i><u>ALT_17.1</u></i>]]></alternative-sequences>
+</CU>

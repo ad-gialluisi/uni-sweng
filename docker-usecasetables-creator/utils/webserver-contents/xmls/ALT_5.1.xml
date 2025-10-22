@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ALT>
+<id><![CDATA[5.1]]></id>
+<name><![CDATA[AttivaUtente:CodiceUnivocoInvalido]]></name>
+<description><![CDATA[Il sistema nega l'attivazione poichè il codice non corrisponde ad alcun utente registrato.]]></description>
+<primary-actors><![CDATA[Ospite]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'ospite invia un codice d'attivazione che non è associato ad alcun utente registrato che si trova negli stati <i>inserito</i> o <i>recuperando</i>.]]></preconditions>
+<execution-step><![CDATA[Dopo il passo <u>1</u> di <i><u>CU_5</u></i>]]></execution-step>
+<sequence><![CDATA[<u>1</u> Il sistema ignora il problema
+<u>2</u> L’ospite può continuare ad interagire col sistema da ospite.]]></sequence>
+<postconditions><![CDATA[L’utente non viene informato del problema, può continuare ad essere ospite.]]></postconditions>
+</ALT>

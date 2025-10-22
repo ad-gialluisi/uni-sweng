@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ALT>
+<id><![CDATA[27.1]]></id>
+<name><![CDATA[VisualizzaNotifiche:VisualizzaTutte]]></name>
+<description><![CDATA[Visualizza tutte le notifiche memorizzate inviate all'utente registrato.]]></description>
+<primary-actors><![CDATA[Globetrotter, QuasiCicerone, Cicerone, Amministratore]]></primary-actors>
+<secondary-actors><![CDATA[]]></secondary-actors>
+<preconditions><![CDATA[L'utente registrato deve aver effettuato l'accesso.]]></preconditions>
+<execution-step><![CDATA[Al posto di <i><u>CU_27</u></i>]]></execution-step>
+<sequence><![CDATA[<u>1</u> L'utente registrato chiede al sistema di vedere tutte le notifiche memorizzate che gli riguardano.
+<u>2</u> Il sistema mostra tali notifiche.]]></sequence>
+<postconditions><![CDATA[L'utente registrato visualizza tutte le notifiche ricevute.]]></postconditions>
+</ALT>

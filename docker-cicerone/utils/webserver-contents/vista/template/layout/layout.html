@@ -1,0 +1,83 @@
+<!-- Copyright (C) 2020 Antonio Daniele Gialluisi -->
+
+<!-- This file is part of "Piattaforma Cicerone" -->
+
+<!-- This program is free software: you can redistribute it and/or modify -->
+<!-- it under the terms of the GNU General Public License as published by -->
+<!-- the Free Software Foundation, either version 3 of the License, or -->
+<!-- (at your option) any later version. -->
+
+<!-- This program is distributed in the hope that it will be useful, -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- GNU General Public License for more details. -->
+
+<!-- You should have received a copy of the GNU General Public License -->
+<!-- along with this program. If not, see <https://www.gnu.org/licenses/>. -->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>\@titolo</title>
+        <meta charset="utf-8"/>
+        \@stile
+        \@headjavascript
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+        <link rel="icon" href="vista/immagini/favicon.png" type="image.png" /> 
+    </head>
+    <body>
+        <div class="css-disabled-message">
+			<div>
+		    	<div>
+	    			<strong>Per utilizzare questo sito al meglio è necessario abilitare CSS.</strong>
+            	</div>
+	        </div>
+	    </div>
+        <noscript>
+        	<div class="javascript-disabled-message">
+				<div>
+		            <div>
+	    		        <strong>Per utilizzare questo sito è necessario abilitare Javascript.</strong>
+            		</div>
+	            </div>
+	        </div>
+        </noscript>
+
+        <div id="header">
+        	<div class="layer1">
+        		<div class="layer2">
+					<div class="header-title">
+		            	<h1 class="title"><a class="cicero-home-href" href="\@home-href">
+    		            	<img class="cicero-img" src="vista/immagini/cicerone.jpg" alt="Immagine di Marco Tullio Cicerone"/>
+        		        	Cicerone
+        		        </a></h1>
+	           			</div>
+           			<div class="header-sidebar-button">
+                		<img class="sidebar-button" src="vista/immagini/sidebar.png" alt="Pulsante per apertura sidebar" onclick="sidebar.toggle()"/>
+		            </div>
+            	</div>
+            </div>
+	    </div>
+
+		\@sidebar
+
+        <div id="content">
+        	<div class="layer1">
+        		<div class="layer2">
+            	\@contenuti
+           		</div>
+            </div>
+        </div>
+
+        <div id="footer">
+        	<div class="layer1">
+        		<div class="layer2">Designed and developed by Antonio Daniele Enterprise</div>
+	        </div>
+        </div>
+
+		\@popups
+
+        \@bodyjavascript
+    </body>
+</html>
