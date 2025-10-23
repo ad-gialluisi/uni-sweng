@@ -58,8 +58,9 @@ L'ideale per questa situazione è usare l'opzione `Tools->Open Current Folder in
 Se dovesse succedere e si intende ripristinare, uscire dall'ambiente Docker ed usare il comando:
 
     ```
-./restore-materials.sh
-```
+    ./restore-materials.sh
+    ```
+
 
 
 - L'unico file di progetto non apribile con questo ambiente è quello VisualParadigm;
@@ -124,8 +125,8 @@ The best course of action for this, is to use PcManFM's `Tools->Open Current Fol
 If that happens and there's the need to restore everything, exit from the Docker environment and use the command:
 
     ```
-./restore-materials.sh
-```
+    ./restore-materials.sh
+    ```
 
 
 - The only project file that can't be opened with this environment, is the VisualParadigm one;
